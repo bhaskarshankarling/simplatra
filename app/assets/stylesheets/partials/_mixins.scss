@@ -1,0 +1,34 @@
+@mixin user-select($value) {
+    -webkit-user-select: $value;
+    -moz-user-select: $value;
+    -ms-user-select: $value;
+    user-select: $value;
+}
+
+@mixin transform($transforms...) {
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    -moz-transform: $transforms;
+    transform: $transforms;
+}
+
+@mixin transition($transitions...) {
+    -ms-transition: $transitions;
+    -moz-transition: $transitions;
+    -webkit-transition: $transitions;
+    transition: $transitions;
+}
+
+@mixin appearance($value) {
+    -webkit-appearance: $value;
+    -moz-appearance: $value;
+    appearance: $value;
+}
+
+@mixin filter($filter) {
+    -webkit-filter: $filter;
+    -moz-filter: $filter;
+    -o-filter: $filter;
+    -ms-filter: $filter;
+    filter: $filter;
+}
