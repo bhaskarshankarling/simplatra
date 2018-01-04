@@ -1,6 +1,6 @@
 # Simplatra MVC
 
-An extended version of the static website template [Simplatra](https://github.com/eonu/simplatra) including ActiveRecord and Rake for models and databases, to turn Simplatra into a template for a complete dynamic, Model-View-Controller architecture.
+An extended version of the static website template [Simplatra](https://github.com/eonu/simplatra) including ActiveRecord and Rake for models and databases, to turn Simplatra into a template for a complete and dynamic Model-View-Controller architecture.
 
 ## Demonstration
 
