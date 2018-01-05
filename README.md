@@ -4,11 +4,21 @@
 
 An extended version of the static website template [Simplatra](https://github.com/eonu/simplatra) including ActiveRecord and Rake for models and databases, to turn Simplatra into a template for a complete and dynamic Model-View-Controller architecture.
 
-## Demonstration
+## Features
 
-[View the demo application here](https://github.com/eonu/simplatra-mvc-demo).
+Simplatra MVC consists of the following features:
 
-This demo only showcases new MVC features which were not present in Simplatra such as models and database migrations & configuration. For a general demo on Simplatra, [click here](https://github.com/eonu/simplatra-demo).
+| <u>Type</u>       | <u>Name</u>                              |
+| ----------------- | ---------------------------------------- |
+| Deployment        | [Heroku](https://www.heroku.com/)        |
+| Web framework     | [Sinatra](http://sinatrarb.com/)         |
+| ORM               | *Rails* [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) |
+| ORDBMS            | <ul><li>**Production**: [PostgreSQL](https://www.postgresql.org/)</li><li>**Development**: [SQLite3](https://www.sqlite.org/)</li></ul> |
+| Asset pipeline    | *Rails* [Sprockets](https://github.com/rails/sprockets) |
+| HTML templating   | [ERB](https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html) |
+| HTML helpers      | [Hanami](https://github.com/hanami/helpers) |
+| Task automation   | [Rake](https://github.com/ruby/rake)     |
+| CSS preprocessing | [SCSS](http://sass-lang.com/)            |
 
 ## Installation
 
@@ -36,6 +46,12 @@ $ bundle install
 # Rename the application directory (optional)
 $ cd .. && mv simplatra-mvc your-app-name
 ```
+
+## Demonstration
+
+[View the demo application here](https://github.com/eonu/simplatra-mvc-demo).
+
+This demo only showcases new MVC features which were not present in Simplatra such as models and database migrations & configuration. For a general demo on Simplatra, [click here](https://github.com/eonu/simplatra-demo).
 
 ## Structure
 
