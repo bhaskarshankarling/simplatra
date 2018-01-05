@@ -1,3 +1,5 @@
+[![Dependency Status](https://beta.gemnasium.com/badges/github.com/eonu/simplatra-mvc.svg)](https://beta.gemnasium.com/projects/github.com/eonu/simplatra-mvc)
+
 # Simplatra MVC
 
 An extended version of the static website template [Simplatra](https://github.com/eonu/simplatra) including ActiveRecord and Rake for models and databases, to turn Simplatra into a template for a complete and dynamic Model-View-Controller architecture.
