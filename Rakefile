@@ -29,17 +29,17 @@ namespace :generate do
         end
     end
 
-    desc 'Generates a new route class file in app/routes (parameters: NAME)'
-    task :route do
+    desc 'Generates a new controller class file in app/controllers (parameters: NAME)'
+    task :controller do
         unless ENV.has_key?('NAME')
-            raise "ERR » Model name must be specified e.g. rake generate:route NAME=User"
+            raise "ERR » Controller name must be specified e.g. rake generate:controller NAME=User"
         end
 
         file_name = ENV['NAME'].underscore+'.rb'
-        file_path = File.dirname(__FILE__)+'/app/routes/'+file_name
+        file_path = File.dirname(__FILE__)+'/app/controllers/'+file_name
 
         if File.exist?(file_path)
-            raise "ERR » Route file '#{file_path}' already exists."
+            raise "ERR » Controller file '#{file_path}' already exists."
         else
             File.open(file_path, 'w+') do |f|
                 f.write(<<-EOF.strip_heredoc)

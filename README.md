@@ -50,9 +50,9 @@ $ rake generate:model NAME=ModelName
 
 The `app/views` directory should contain all of the `HTML`/`ERB`-related view files of the application, including templates, partials etc.
 
-### Controllers/Routes - `app/routes`
+### Controllers - `app/controllers`
 
-Multiple controllers/routes can be declared in a single file, or multiple files. Multiple files is recommended to avoid cluttering.
+Multiple routes can be declared in a single controller file. However, you may have multiple controller files with their own routes.
 
 To generate a new route file, use the following `rake` task:
 
@@ -84,3 +84,18 @@ If you plan to deploy your Sinatra application with Heroku, there is already a `
 ```
 web: bundle exec rackup config.ru -p $PORT
 ```
+
+### Buildpack
+
+You will need to use the `heroku/ruby` buildpack. This can be changed in your application's Heroku settings.
+
+### Environment variables
+
+Ensure that you set the environment variables present in `app/database.yml`:
+
+- `DATABASE_HOST` - The database host
+- `DATABASE_NAME` - The database name/url
+- `DATABASE_USER` - The database username
+- `DATABASE_PASSWORD` - The database password
+
+These are only required for production, and can be set in your application's Heroku settings.
