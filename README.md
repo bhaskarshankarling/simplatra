@@ -35,9 +35,35 @@ $ rm README.md
 $ cd .. && mv simplatra-mvc your-app-name
 ```
 
-## Usage
+## Structure
 
-TODO
+### Models - `app/models`
+
+To generate a new model, use the following `rake` task:
+
+```bash
+# Generates a new model class file in app/models (parameters: NAME)
+$ rake generate:model NAME=ModelName
+```
+
+### Views `app/views`
+
+The `app/views` directory should contain all of the `HTML`/`ERB`-related view files of the application, including templates, partials etc.
+
+### Controllers/Routes - `app/routes`
+
+Multiple controllers/routes can be declared in a single file, or multiple files. Multiple files is recommended to avoid cluttering.
+
+To generate a new route file, use the following `rake` task:
+
+```bash
+# Generates a new route class file in app/routes (parameters: NAME)
+$ rake generate:route NAME=RouteName
+```
+
+### Static data - `app/yaml`
+
+Static data can be stored in `YAML` files in the `app/yaml` directory. This works the same way as the static version of Simplatra. For more information [read here](https://github.com/eonu/simplatra).
 
 ## Running the application
 
