@@ -6,55 +6,54 @@ An extended version of the static website template [Simplatra](https://github.co
 
 ## Features
 
-Simplatra MVC consists of the following features:
+Simplatra MVC consists of the following features (and/or dependencies):
 
-| <u>Type</u>          | <u>Name</u>                              |
-| -------------------- | ---------------------------------------- |
-| Deployment           | [Heroku](https://www.heroku.com/)        |
-| Web framework        | [Sinatra](http://sinatrarb.com/)         |
-| ORM                  | *Rails* [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) |
-| ORDBMS (Production)  | [PostgreSQL](https://www.postgresql.org/) |
-| ORDBMS (Development) | [SQLite3](https://www.sqlite.org/)       |
-| Asset pipeline       | *Rails* [Sprockets](https://github.com/rails/sprockets) |
-| HTML templating      | [ERB](https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html) |
-| HTML helpers         | [Hanami](https://github.com/hanami/helpers) |
-| Task automation      | [Rake](https://github.com/ruby/rake)     |
-| CSS preprocessing    | [SCSS](http://sass-lang.com/)            |
-
-## Installation
-
-To to prepare this template for usage in your application:
-
-```bash
-# Clone into the repository
-$ git clone https://github.com/eonu/simplatra-mvc.git
-
-# Change directory
-$ cd simplatra-mvc
-
-# Remove the .git directory (recommended)
-$ rm -rf .git
-
-# Remove all .gitkeep files recursively (optional)
-$ find . -name ".gitkeep" -exec rm -rf {} \;
-
-# Remove the README.md file (optional)
-$ rm README.md
-
-# Install all required gems specified in Gemfile
-$ bundle install
-
-# Rename the application directory (optional)
-$ cd .. && mv simplatra-mvc your-app-name
-```
-
-## Demonstration
-
-[View the demo application here](https://github.com/eonu/simplatra-mvc-demo).
-
-This demo only showcases new MVC features which were not present in Simplatra such as models and database migrations & configuration. For a general demo on Simplatra, [click here](https://github.com/eonu/simplatra-demo).
+- **Deployment**: Heroku (https://www.heroku.com/)
+- **Web framework**: Sinatra (http://sinatrarb.com/)
+- **ORM**: *Rails* ActiveRecord (https://github.com/rails/rails/tree/master/activerecord)
+- **ORDBMS (production)**: PostgreSQL (https://www.postgresql.org/)
+- **ORDBMS (development)**: SQLite3 (https://www.sqlite.org/)
+- **Asset pipeline**: *Rails* Sprockets (https://github.com/rails/sprockets)
+- **HTML templating**: ERB (https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html)
+- **HTML helpers**: Hanami (https://github.com/hanami/helpers)
+- **CSS preprocessing**: SCSS (http://sass-lang.com/)
+- **Task automation**: Rake (https://github.com/ruby/rake)
 
 ## Structure
+
+The template's directory is currently structured as follows:
+
+>  **NOTE**: SCSS partials and the view + `README.md` files are not displayed in this tree.
+
+```ruby
+.
+├── Gemfile					# Gemfile for dependencies and versions
+├── Procfile				# Process types for Heroku deployment
+├── Rakefile				# Rakefile for task automation
+├── app
+│   ├── assets				# Assets for pipelining
+│   │   ├── fonts
+│   │   ├── images
+│   │   ├── scripts
+│   │   └── stylesheets
+│   │       └── partials
+│   ├── controllers			# Controllers and routes
+│   │   └── application.rb
+│   ├── helpers.rb			# Helper methods for the application
+│   ├── models				# Database models
+│   ├── views				# HTML views, partials and templates
+│   │   ├── partials
+│   │   └── templates
+│   └── yaml				# Static application data
+├── app.rb					# CORE APPLICATION FILE
+├── config					# Database, asset and static data config
+│   ├── assets.rb
+│   ├── data.rb
+│   └── database.yml
+└── config.ru				# config.ru for rack-based deployment
+```
+
+---
 
 ### Models - `app/models`
 
@@ -84,6 +83,33 @@ $ rake generate:route NAME=RouteName
 
 Static data can be stored in `YAML` files in the `app/yaml` directory. This works the same way as the static version of Simplatra. For more information [read here](https://github.com/eonu/simplatra).
 
+## Installation
+
+To to prepare this template for usage in your application:
+
+```bash
+# Clone into the repository
+$ git clone https://github.com/eonu/simplatra-mvc.git
+
+# Change directory
+$ cd simplatra-mvc
+
+# Remove the .git directory (recommended)
+$ rm -rf .git
+
+# Remove all .gitkeep files recursively (optional)
+$ find . -name ".gitkeep" -exec rm -rf {} \;
+
+# Remove the README.md file (optional)
+$ rm README.md
+
+# Install all required gems specified in Gemfile
+$ bundle install
+
+# Rename the application directory (optional)
+$ cd .. && mv simplatra-mvc your-app-name
+```
+
 ## Running the application
 
 To run the application, simply use:
@@ -93,6 +119,12 @@ $ rackup
 ```
 
 All files located within directories of the asset pipeline are constantly being watched, and will update without having to restart the server with `rackup` again.
+
+## Demonstration
+
+[View the demo application here](https://github.com/eonu/simplatra-mvc-demo).
+
+This demo only showcases new MVC features which were not present in Simplatra such as models and database migrations & configuration. For a general demo on Simplatra, [click here](https://github.com/eonu/simplatra-demo).
 
 ## Deploying to [Heroku](https://www.heroku.com/)
 
