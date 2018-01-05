@@ -151,3 +151,23 @@ Ensure that you set the environment variables present in `app/database.yml`:
 - `DATABASE_PASSWORD` - The database password
 
 These are only required for production, and can be set in your application's Heroku settings.
+
+---
+
+Special thanks to the authors of the following documents, articles, posts and repositories - a lot of inspiration for Simplatra was drawn from them.
+
+The following blog posts and blog authors:
+
+- [Designing with Class: Sinatra + PostgreSQL +  Heroku](http://mherman.org/blog/2013/06/08/designing-with-class-sinatra-plus-postgresql-plus-heroku/#.Wk_oxEuYPox) - **Michael Herman**
+- [How to set up Sinatra with ActiveRecord](http://coding.jandavid.de/2016/02/08/how-to-set-up-sinatra-with-activerecord/) - **Jan David**
+
+The following pages on the official Sinatra website:
+
+- [Sinatra - Frequently Asked Questions](http://sinatrarb.com/faq.html#helpview)
+- [Sinatra - PostgreSQL and database connections](http://recipes.sinatrarb.com/p/databases/postgresql-activerecord)
+
+The following GitHub repositories:
+
+- [shannonjen/**sinatra_crud_tutorial**](https://github.com/shannonjen/sinatra_crud_tutorial)
+- [tkellen/**sinatra-template**](https://github.com/tkellen/sinatra-template)
+- [zencephalon/**sinatra-mvc-skeleton**](https://github.com/zencephalon/sinatra-mvc-skeleton)
