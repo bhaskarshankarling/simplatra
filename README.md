@@ -27,7 +27,7 @@ The template's directory is currently structured as follows:
 
 ```ruby
 .
-├── Gemfile					# Gemfile for dependencies and versions
+├── Gemfile				# Gemfile for dependencies and versions
 ├── Procfile				# Process types for Heroku deployment
 ├── Rakefile				# Rakefile for task automation
 ├── app
@@ -45,8 +45,8 @@ The template's directory is currently structured as follows:
 │   │   ├── partials
 │   │   └── templates
 │   └── yaml				# Static application data
-├── app.rb					# CORE APPLICATION FILE
-├── config					# Database, asset and static data config
+├── app.rb				# CORE APPLICATION FILE
+├── config				# Database, asset and static data config
 │   ├── assets.rb
 │   ├── data.rb
 │   └── database.yml
