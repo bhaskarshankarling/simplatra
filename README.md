@@ -18,6 +18,7 @@ Simplatra MVC consists of the following features (and/or dependencies):
 - **HTML helpers**: Hanami (https://github.com/hanami/helpers)
 - **CSS preprocessing**: SCSS (http://sass-lang.com/)
 - **Task automation**: Rake (https://github.com/ruby/rake)
+- **Static site data**: YAML (http://yaml.org/)
 
 ## Structure
 
@@ -44,7 +45,7 @@ The template's directory is currently structured as follows:
 │   ├── views				# HTML views, partials and templates
 │   │   ├── partials
 │   │   └── templates
-│   └── yaml				# Static application data
+│   └── yaml				# Static site data
 ├── app.rb				# CORE APPLICATION FILE
 ├── config				# Database, asset and static data config
 │   ├── assets.rb
