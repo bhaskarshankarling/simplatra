@@ -8,17 +8,18 @@ An extended version of the static website template [Simplatra](https://github.co
 
 Simplatra MVC consists of the following features:
 
-| <u>Type</u>       | <u>Name</u>                              |
-| ----------------- | ---------------------------------------- |
-| Deployment        | [Heroku](https://www.heroku.com/)        |
-| Web framework     | [Sinatra](http://sinatrarb.com/)         |
-| ORM               | *Rails* [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) |
-| ORDBMS            | <ul><li>**Production**: [PostgreSQL](https://www.postgresql.org/)</li><li>**Development**: [SQLite3](https://www.sqlite.org/)</li></ul> |
-| Asset pipeline    | *Rails* [Sprockets](https://github.com/rails/sprockets) |
-| HTML templating   | [ERB](https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html) |
-| HTML helpers      | [Hanami](https://github.com/hanami/helpers) |
-| Task automation   | [Rake](https://github.com/ruby/rake)     |
-| CSS preprocessing | [SCSS](http://sass-lang.com/)            |
+| <u>Type</u>          | <u>Name</u>                              |
+| -------------------- | ---------------------------------------- |
+| Deployment           | [Heroku](https://www.heroku.com/)        |
+| Web framework        | [Sinatra](http://sinatrarb.com/)         |
+| ORM                  | *Rails* [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) |
+| ORDBMS (Production)  | [PostgreSQL](https://www.postgresql.org/) |
+| ORDBMS (Development) | [SQLite3](https://www.sqlite.org/)       |
+| Asset pipeline       | *Rails* [Sprockets](https://github.com/rails/sprockets) |
+| HTML templating      | [ERB](https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html) |
+| HTML helpers         | [Hanami](https://github.com/hanami/helpers) |
+| Task automation      | [Rake](https://github.com/ruby/rake)     |
+| CSS preprocessing    | [SCSS](http://sass-lang.com/)            |
 
 ## Installation
 
