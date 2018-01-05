@@ -22,14 +22,14 @@ $ cd simplatra-mvc
 # Remove the .git directory (recommended)
 $ rm -rf .git
 
-# Install all required gems specified in Gemfile
-$ bundle install
-
 # Remove all .gitkeep files recursively (optional)
 $ find . -name ".gitkeep" -exec rm -rf {} \;
 
 # Remove the README.md file (optional)
 $ rm README.md
+
+# Install all required gems specified in Gemfile
+$ bundle install
 
 # Rename the application directory (optional)
 $ cd .. && mv simplatra-mvc your-app-name
