@@ -1,7 +1,5 @@
 [![Dependency Status](https://beta.gemnasium.com/badges/github.com/eonu/simplatra-mvc.svg)](https://beta.gemnasium.com/projects/github.com/eonu/simplatra-mvc)
-
 [![Release](https://img.shields.io/github/release/eonu/simplatra-mvc.svg)](https://github.com/eonu/simplatra-mvc/releases)
-
 [![License](https://img.shields.io/github/license/eonu/simplatra-mvc.svg)](https://github.com/eonu/simplatra-mvc/blob/master/LICENSE)
 
 # Simplatra MVC
