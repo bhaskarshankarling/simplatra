@@ -13,9 +13,9 @@ Dir[File.dirname(__FILE__)+'/config/*.rb'].each{|f|require f}
 class Application < Sinatra::Base
     # Set views, templates and partials
     set :views, Proc.new {File.dirname(__FILE__)+'/app/views'}
-
-    # Set database configuration file
-    set :database, 'config/database.yml'
+    
+    # Set database configuration
+    set :database, (:environment == :production) ? ENV['DATABASE_URL'] : 'config/database.yml'
 
     # Include HTML/ERB helpers
     include Hanami::Helpers
