@@ -8,7 +8,7 @@ An extended version of the static website template [Simplatra](https://github.co
 
 ## Features
 
-Simplatra MVC consists of the following features (and/or dependencies):
+Simplatra MVC utilises the following features, gem dependencies and services:
 
 - **Deployment**: Heroku (https://www.heroku.com/)
 - **Web framework**: Sinatra (http://sinatrarb.com/)
@@ -131,8 +131,6 @@ This demo only showcases new MVC features which were not present in Simplatra su
 
 ## Deploying to [Heroku](https://www.heroku.com/)
 
-**NOTE:** Simplatra MVC has only been tested in local development/test mode and not yet production mode, so proceed with caution.
-
 If you plan to deploy your Sinatra application with Heroku, there is already a `Procfile` included with the following process type:
 
 ```
@@ -143,16 +141,9 @@ web: bundle exec rackup config.ru -p $PORT
 
 You will need to use the `heroku/ruby` buildpack. This can be changed in your application's Heroku settings.
 
-### Environment variables
+### Environment variables (in production)
 
-Ensure that you set the environment variables present in `app/database.yml`:
-
-- `DATABASE_HOST` - The database host
-- `DATABASE_NAME` - The database name/url
-- `DATABASE_USER` - The database username
-- `DATABASE_PASSWORD` - The database password
-
-These are only required for production, and can be set in your application's Heroku settings.
+Ensure that you set the `DATABASE_URL` environment variable in your Heroku settings if you don't wish to use the default database given by Heroku.
 
 ---
 
