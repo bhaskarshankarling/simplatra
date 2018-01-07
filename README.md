@@ -22,30 +22,6 @@ Simplatra MVC utilises the following features, gem dependencies and services:
 - **Task automation**: Rake (https://github.com/ruby/rake)
 - **Static site data**: YAML (http://yaml.org/)
 
-### But wait...
-
-Why are no gems included for testing or specs?
-
-There are many options for webdrivers, test-driven development tools (for writing unit tests, functional tests and integration tests) and application specifications. It was decided to not restrict the user by picking and choosing a few from these options and bundling it with the Simplatra template - we leave this to the user!
-
-Here are a number of popularly choices to choose from:
-
-#### Testing/Specifications
-
-- **Capybara** (https://github.com/teamcapybara/capybara)
-- **Minitest** (https://github.com/seattlerb/minitest)
-- **Test::Unit** (https://github.com/test-unit/test-unit)
-- **Rack::Test** (https://github.com/rack-test/rack-test)
-- **RSpec** (http://rspec.info/)
-- **Cucumber** (https://github.com/cucumber/cucumber-ruby)
-
-#### Webdrivers
-
-- **Watir** (http://watir.com)
-- **Selenium** (https://github.com/SeleniumHQ/selenium/tree/master/rb)
-- **Poltergeist** (https://github.com/teampoltergeist/poltergeist)
-- **Capybara Webkit** (https://github.com/thoughtbot/capybara-webkit)
-
 ## Structure
 
 The template's directory is currently structured as follows:
