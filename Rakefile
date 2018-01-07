@@ -19,11 +19,9 @@ namespace :generate do
         else
             File.open(file_path, 'w+') do |f|
                 f.write(<<-EOF.strip_heredoc)
-                  class Application < Sinatra::Base
-                      class #{name} < ActiveRecord::Base
-                          # Add your model methods here...
-                      end
-                  end
+                    class #{name} < ActiveRecord::Base
+                        # Add your model methods here...
+                    end
                 EOF
             end
         end
