@@ -1,10 +1,10 @@
 [![Dependency Status](https://beta.gemnasium.com/badges/github.com/eonu/simplatra-mvc.svg)](https://beta.gemnasium.com/projects/github.com/eonu/simplatra-mvc)
-[![Release](https://img.shields.io/github/release/eonu/simplatra-mvc.svg)](https://github.com/eonu/simplatra-mvc/releases)
-[![License](https://img.shields.io/github/license/eonu/simplatra-mvc.svg)](https://github.com/eonu/simplatra-mvc/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/release/simplatra/simplatra-mvc.svg)](https://github.com/simplatra/simplatra-mvc/releases)
+[![License](https://img.shields.io/github/license/simplatra/simplatra-mvc.svg)](https://github.com/simplatra/simplatra-mvc/blob/master/LICENSE)
 
 # Simplatra MVC
 
-An extended version of the static website template [Simplatra](https://github.com/eonu/simplatra) including ActiveRecord and Rake for models and databases, to turn Simplatra into a template for a complete and dynamic Model-View-Controller architecture.
+An extended version of the static website template [Simplatra](https://github.com/simplatra/simplatra) including ActiveRecord and Rake for models and databases, to turn Simplatra into a template for a complete and dynamic Model-View-Controller architecture.
 
 ## Features
 
@@ -84,7 +84,7 @@ $ rake generate:route NAME=RouteName
 
 ### Static data - `app/yaml`
 
-Static data can be stored in `YAML` files in the `app/yaml` directory. This works the same way as the static version of Simplatra. For more information [read here](https://github.com/eonu/simplatra).
+Static data can be stored in `YAML` files in the `app/yaml` directory. This works the same way as the static version of Simplatra. For more information [read here](https://github.com/simplatra/simplatra).
 
 ## Installation
 
@@ -92,7 +92,7 @@ To to prepare this template for usage in your application:
 
 ```bash
 # Clone into the repository
-$ git clone https://github.com/eonu/simplatra-mvc.git
+$ git clone https://github.com/simplatra/simplatra-mvc.git
 
 # Change directory
 $ cd simplatra-mvc
@@ -125,11 +125,15 @@ All files located within directories of the asset pipeline are constantly being 
 
 ## Demonstration
 
-[View the demo application here](https://github.com/eonu/simplatra-mvc-demo).
+[View the demo application here](https://github.com/simplatra/simplatra-mvc-demo).
 
-This demo only showcases new MVC features which were not present in Simplatra such as models and database migrations & configuration. For a general demo on Simplatra, [click here](https://github.com/eonu/simplatra-demo).
+This demo only showcases new MVC features which were not present in Simplatra such as models and database migrations & configuration. For a general demo on Simplatra, [click here](https://github.com/simplatra/simplatra-demo).
 
-## Deploying to [Heroku](https://www.heroku.com/)
+## Deployment
+
+Simplatra MVC is bundled and set up to be deployed on Heroku, so this would probably be the easiest way to deploy your application. Although this README won't explain other methods of deployment, feel free to deploy however you like!
+
+### Deploying to [Heroku](https://www.heroku.com/)
 
 If you plan to deploy your Sinatra application with Heroku, there is already a `Procfile` included with the following process type:
 
@@ -137,11 +141,11 @@ If you plan to deploy your Sinatra application with Heroku, there is already a `
 web: bundle exec rackup config.ru -p $PORT
 ```
 
-### Buildpack
+#### Buildpack
 
 You will need to use the `heroku/ruby` buildpack. This can be changed in your application's Heroku settings.
 
-### Environment variables (in production)
+#### Environment variables
 
 Ensure that you set the `DATABASE_URL` environment variable in your Heroku settings if you don't wish to use the default database given by Heroku.
 
