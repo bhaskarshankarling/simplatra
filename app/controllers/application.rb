@@ -2,7 +2,7 @@ class Application < Sinatra::Base
     # Index routes
     %w(/ /index /home).each do |path|
         get path do
-            erb :index, layout: 'templates/default'.to_sym
+            erb :index, layout: :'templates/layout'
         end
     end
 
