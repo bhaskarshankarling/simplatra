@@ -175,7 +175,13 @@ New Relic RPM can be used for monitoring the performance of your application onc
 2. Deploy your application as normal on Heroku
 3. Open the application page of your newly-made application from your [Heroku dashboard](https://dashboard.heroku.com/apps)
 4. Search for the `New Relic APM` add-on, select a plan and add it to your app
-5. Set the `NEW_RELIC_LICENSE_KEY` environment variable in your Heroku application settings to your license key
+5. Set the `NEW_RELIC_LICENSE_KEY` environment variable in your Heroku application settings to your license key (if it isn't already set)
+
+Additionally, you can set up regular pinging for your Heroku application. If your application runs on [free dynos](https://devcenter.heroku.com/articles/free-dyno-hours#quota), ensure that New Relic isn't eating up your free dyno hours quota. You can alter the ping rate for your application in the settings on the New Relic website.
+
+1. Go to your application's page on the New Relic website.
+2. On the sidebar on the left, under the `Reports` section, select `Availability`.
+3. In the URL text-box, enter the URL of your Heroku application (e.g. http://appname.herokuapp.com). Continue to the next screen and don't change any settings (unless you know what you're doing)!
 
 ---
 
