@@ -4,7 +4,7 @@
 
 # Simplatra MVC
 
-An extended version of the static website template [Simplatra](https://github.com/simplatra/simplatra) including ActiveRecord and Rake for models and databases, to turn Simplatra into a template for a complete and dynamic Model-View-Controller architecture.
+An extended version of [Simplatra](https://github.com/simplatra/simplatra) including ActiveRecord and Rake for creating more complete and dynamic web applications based on the Model-View-Controller architecture.
 
 ## Features
 
@@ -21,6 +21,7 @@ Simplatra MVC utilises the following features, gem dependencies and services:
 - **CSS preprocessing**: SCSS (http://sass-lang.com/)
 - **Task automation**: Rake (https://github.com/ruby/rake)
 - **Static site data**: YAML (http://yaml.org/)
+- **Performance monitoring**: New Relic RPM (https://github.com/newrelic/rpm)
 
 ## Structure
 
@@ -42,7 +43,8 @@ The template's directory is currently structured as follows:
 │   │       └── partials
 │   ├── controllers			# Controllers and routes
 │   │   └── application.rb
-│   ├── helpers.rb			# Helper methods for the application
+│   ├── helpers             # Helper methods for the application
+│   │   └── application.rb
 │   ├── models				# Database models
 │   ├── views				# HTML views, partials and templates
 │   │   ├── partials
@@ -52,6 +54,7 @@ The template's directory is currently structured as follows:
 ├── config				# Database, asset and static data config
 │   ├── assets.rb
 │   ├── data.rb
+│   ├── newrelic.yml
 │   └── database.yml
 └── config.ru				# config.ru for rack-based deployment
 ```
@@ -75,11 +78,26 @@ The `app/views` directory should contain all of the `HTML`/`ERB`-related view fi
 
 Multiple routes can be declared in a single controller file. However, you may have multiple controller files with their own routes.
 
+The core application controller is named `application.rb`. It should contain routes which are core to the application, such as 404 routes and index routes.
+
 To generate a new route file, use the following `rake` task:
 
 ```bash
 # Generates a new route class file in app/routes (parameters: NAME)
 $ rake generate:route NAME=RouteName
+```
+
+### Helpers - `app/helpers`
+
+Similarly to routes, multiple helper methods can be declared in a single helper file. But you can also have multiple helper files.
+
+The core application helper file is named `application.rb`.
+
+To generate a new helper file, use the following `rake` task:
+
+```bash
+# Generates a new helper class file in app/helpers (parameters: NAME)
+$ rake generate:helper NAME=HelperName
 ```
 
 ### Static data - `app/yaml`
@@ -148,6 +166,16 @@ You will need to use the `heroku/ruby` buildpack. This can be changed in your ap
 #### Environment variables
 
 Ensure that you set the `DATABASE_URL` environment variable in your Heroku settings if you don't wish to use the default database given by Heroku.
+
+## Performance monitoring with [New Relic RPM](https://github.com/newrelic/rpm) and Heroku
+
+New Relic RPM can be used for monitoring the performance of your application once deployed. Heroku has an add-on for New Relic RPM with free and paid plans. To use New Relic RPM:
+
+1. Configure your New Relic settings in the configuration file `config/newrelic.yml` of your application. For more information on configuring the `newrelic.yml` file, [read this document](https://docs.newrelic.com/docs/agents/ruby-agent/configuration/ruby-agent-configuration)
+2. Deploy your application as normal on Heroku
+3. Open the application page of your newly-made application from your [Heroku dashboard](https://dashboard.heroku.com/apps)
+4. Search for the `New Relic APM` add-on, select a plan and add it to your app
+5. Set the `NEW_RELIC_LICENSE_KEY` environment variable in your Heroku application settings to your license key
 
 ---
 

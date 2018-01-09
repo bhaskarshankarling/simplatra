@@ -30,3 +30,6 @@ gem 'rake', '~> 12.3.0'
 # ActiveRecord for models and databases
 gem 'activerecord', '~> 5.1.4'
 gem 'sinatra-activerecord', '~> 2.0.13'
+
+# NewRelic RPM for monitoring
+gem 'newrelic_rpm', '~> 4.7.1.340'
