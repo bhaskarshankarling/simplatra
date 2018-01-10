@@ -31,32 +31,32 @@ The template's directory is currently structured as follows:
 
 ```ruby
 .
-├── Gemfile				# Gemfile for dependencies and versions
-├── Procfile				# Process types for Heroku deployment
-├── Rakefile				# Rakefile for task automation
+├── Gemfile # Gemfile for dependencies and versions
+├── Procfile # Process types for Heroku deployment
+├── Rakefile # Rakefile for task automation
 ├── app
-│   ├── assets				# Assets for pipelining
+│   ├── assets # Assets for pipelining
 │   │   ├── fonts
 │   │   ├── images
 │   │   ├── scripts
 │   │   └── stylesheets
 │   │       └── partials
-│   ├── controllers			# Controllers and routes
+│   ├── controllers # Controllers and routes
 │   │   └── application.rb
-│   ├── helpers             # Helper methods for the application
+│   ├── helpers # Helper methods for the application
 │   │   └── application.rb
-│   ├── models				# Database models
-│   ├── views				# HTML views, partials and templates
+│   ├── models # Database models
+│   ├── views # HTML views, partials and templates
 │   │   ├── partials
 │   │   └── templates
-│   └── yaml				# Static site data
-├── app.rb				# CORE APPLICATION FILE
-├── config				# Database, asset and static data config
+│   └── yaml # Static site data
+├── app.rb # CORE APPLICATION FILE
+├── config # Database, asset and static data config
 │   ├── assets.rb
 │   ├── data.rb
 │   ├── newrelic.yml
 │   └── database.yml
-└── config.ru				# config.ru for rack-based deployment
+└── config.ru # config.ru for rack-based deployment
 ```
 
 ---
@@ -66,7 +66,7 @@ The template's directory is currently structured as follows:
 To generate a new model, use the following `rake` task:
 
 ```bash
-# Generates a new model class file in app/models (parameters: NAME)
+# Generates a new model class file app/models/model_name.rb (parameters: NAME)
 $ rake generate:model NAME=ModelName
 ```
 
@@ -83,7 +83,7 @@ The core application controller is named `application.rb`. It should contain rou
 To generate a new route file, use the following `rake` task:
 
 ```bash
-# Generates a new route class file in app/routes (parameters: NAME)
+# Generates a new route class file app/routes/route_name.rb (parameters: NAME)
 $ rake generate:route NAME=RouteName
 ```
 
@@ -96,13 +96,13 @@ The core application helper file is named `application.rb`.
 To generate a new helper file, use the following `rake` task:
 
 ```bash
-# Generates a new helper class file in app/helpers (parameters: NAME)
+# Generates a new helper class file app/helpers/helper_name.rb (parameters: NAME)
 $ rake generate:helper NAME=HelperName
 ```
 
 ### Static data - `app/yaml`
 
-Static data can be stored in `YAML` files in the `app/yaml` directory. This works the same way as the static version of Simplatra. For more information [read here](https://github.com/simplatra/simplatra).
+Static data can be stored in `YAML` files in the `app/yaml` directory. This works the same way as the static version of Simplatra. For more information [read here](https://github.com/simplatra/simplatra#yaml-data).
 
 ## Installation
 
@@ -112,23 +112,18 @@ To to prepare this template for usage in your application:
 # Clone into the repository
 $ git clone https://github.com/simplatra/simplatra-mvc.git
 
-# Change directory
-$ cd simplatra-mvc
+# Change directory and install dependencies
+$ cd simplatra-mvc && bundle install
 
-# Remove the .git directory (recommended)
-$ rm -rf .git
+# Set up the application
+$ rake setup NAME=your-app-name && cd .
+```
 
-# Remove all .gitkeep files recursively (optional)
-$ find . -name ".gitkeep" -exec rm -rf {} \;
+Alternatively for the last step, if you want to recursively delete all `.gitkeep` files in the repository:
 
-# Remove the README.md file (optional)
-$ rm README.md
-
-# Install all required gems specified in Gemfile
-$ bundle install
-
-# Rename the application directory (optional)
-$ cd .. && mv simplatra-mvc your-app-name
+```bash
+# Sets up the application and recursively deletes all .gitkeep files
+$ rake setup NAME=your-app-name GITKEEP=true && cd .
 ```
 
 ## Running the application
@@ -161,7 +156,9 @@ web: bundle exec rackup config.ru -p $PORT
 
 #### Buildpack
 
-You will need to use the `heroku/ruby` buildpack. This can be changed in your application's Heroku settings.
+You will need to use the `heroku/ruby` buildpack.
+
+This should be automatically be set when you make your first deployment. If not, this can be changed in your application's Heroku settings.
 
 #### Environment variables
 
@@ -185,7 +182,7 @@ Additionally, you can set up regular pinging for your Heroku application. If you
 
 ---
 
-Special thanks to the authors of the following documents, articles, posts and repositories - a lot of inspiration for Simplatra was drawn from them.
+Special thanks to the authors of the following documents, blog posts and repositories - a lot of inspiration for Simplatra was drawn from them.
 
 The following blog posts and blog authors:
 
