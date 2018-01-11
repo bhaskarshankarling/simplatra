@@ -63,14 +63,14 @@ The template's directory is currently structured as follows:
 
 ### Models - `app/models`
 
-To generate a new model, use the following `rake` task:
+To generate a new `ActiveRecord` model, use the following `rake` task:
 
 ```bash
 # Generates a new model class file app/models/model_name.rb (parameters: NAME)
 $ rake generate:model NAME=ModelName
 ```
 
-### Views `app/views`
+### Views - `app/views`
 
 The `app/views` directory should contain all of the `HTML`/`ERB`-related view files of the application, including templates, partials etc.
 
@@ -80,11 +80,11 @@ Multiple routes can be declared in a single controller file. However, you may ha
 
 The core application controller is named `application.rb`. It should contain routes which are core to the application, such as 404 routes and index routes.
 
-To generate a new route file, use the following `rake` task:
+To generate a new controller file, use the following `rake` task:
 
 ```bash
-# Generates a new route class file app/routes/route_name.rb (parameters: NAME)
-$ rake generate:route NAME=RouteName
+# Generates a new controller class file app/controllers/controller_name.rb (parameters: NAME)
+$ rake generate:controller NAME=ControllerName
 ```
 
 ### Helpers - `app/helpers`
