@@ -1,4 +1,4 @@
-[![Dependency Status](https://beta.gemnasium.com/badges/github.com/eonu/simplatra-mvc.svg)](https://beta.gemnasium.com/projects/github.com/eonu/simplatra-mvc)
+[![Dependency Status](https://beta.gemnasium.com/badges/github.com/simplatra/simplatra-mvc.svg)](https://beta.gemnasium.com/projects/github.com/simplatra/simplatra-mvc)
 [![Release](https://img.shields.io/github/release/simplatra/simplatra-mvc.svg)](https://github.com/simplatra/simplatra-mvc/releases)
 [![License](https://img.shields.io/github/license/simplatra/simplatra-mvc.svg)](https://github.com/simplatra/simplatra-mvc/blob/master/LICENSE)
 
