@@ -4,6 +4,9 @@ source 'https://rubygems.org'
 # Ruby version
 ruby '2.5.0'
 
+# Rake for application setup, file generation tasks and migrations
+gem 'rake'
+
 # Sinatra
 gem 'sinatra'
 
@@ -23,9 +26,6 @@ end
 group :production do
     gem 'pg'
 end
-
-# Rake for database migrations
-gem 'rake'
 
 # ActiveRecord for models and databases
 gem 'activerecord'
