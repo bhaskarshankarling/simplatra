@@ -25,43 +25,45 @@ Simplatra MVC utilises the following features, gem dependencies and services:
 
 ## Structure
 
+### Directory tree
+
 The template's directory is currently structured as follows:
 
->  **NOTE**: SCSS partials and the view + `README.md` files are not displayed in this tree.
+>  **NOTE**: Not all files are not displayed in this tree.
 
 ```ruby
 .
-├── Gemfile # Gemfile for dependencies and versions
-├── Procfile # Process types for Heroku deployment
-├── Rakefile # Rakefile for task automation
-├── app
-│   ├── assets # Assets for pipelining
-│   │   ├── fonts
-│   │   ├── images
-│   │   ├── scripts
-│   │   └── stylesheets
-│   │       └── partials
-│   ├── controllers # Controllers and routes
-│   │   └── application.rb
-│   ├── helpers # Helper methods for the application
-│   │   └── application.rb
-│   ├── models # Database models
-│   ├── views # HTML views, partials and templates
-│   │   ├── partials
-│   │   └── templates
-│   └── yaml # Static site data
-├── app.rb # CORE APPLICATION FILE
-├── config # Database, asset and static data config
-│   ├── assets.rb
-│   ├── data.rb
-│   ├── newrelic.yml
-│   └── database.yml
-└── config.ru # config.ru for rack-based deployment
+├── Gemfile                #=> Gemfile for dependencies and versions
+├── Procfile               #=> Process types for Heroku deployment
+├── Rakefile               #=> Rakefile for task automation
+├── app                    #
+│   ├── assets             #=> Assets for pipelining
+│   │   ├── fonts          #
+│   │   ├── images         #
+│   │   ├── scripts        #
+│   │   └── stylesheets    #
+│   │       └── partials   #
+│   ├── controllers        #=> Controllers and routes
+│   │   └── application.rb #
+│   ├── helpers            #=> Helper methods for the application
+│   │   └── application.rb #
+│   ├── models             #=> Database models
+│   ├── views              #=> HTML views, partials and templates
+│   │   ├── partials       #
+│   │   └── templates      #
+│   └── yaml               #=> Static site data
+├── app.rb                 #=> CORE APPLICATION FILE
+├── config                 #=> Database, asset and static data config
+│   ├── assets.rb          #
+│   ├── data.rb            #
+│   ├── newrelic.yml       #
+│   └── database.yml       #
+└── config.ru              #=> config.ru for rack-based deployment
 ```
 
----
+### Template structure
 
-### Models - `app/models`
+#### Models - `app/models`
 
 To generate a new `ActiveRecord` model, use the following `rake` task:
 
@@ -70,11 +72,11 @@ To generate a new `ActiveRecord` model, use the following `rake` task:
 $ rake generate:model NAME=ModelName
 ```
 
-### Views - `app/views`
+#### Views - `app/views`
 
 The `app/views` directory should contain all of the `HTML`/`ERB`-related view files of the application, including templates, partials etc.
 
-### Controllers - `app/controllers`
+#### Controllers - `app/controllers`
 
 Multiple routes can be declared in a single controller file. However, you may have multiple controller files with their own routes.
 
@@ -87,7 +89,7 @@ To generate a new controller file, use the following `rake` task:
 $ rake generate:controller NAME=ControllerName
 ```
 
-### Helpers - `app/helpers`
+#### Helpers - `app/helpers`
 
 Similarly to routes, multiple helper methods can be declared in a single helper file. But you can also have multiple helper files.
 
@@ -100,7 +102,7 @@ To generate a new helper file, use the following `rake` task:
 $ rake generate:helper NAME=HelperName
 ```
 
-### Static data - `app/yaml`
+#### Static data - `app/yaml`
 
 Static data can be stored in `YAML` files in the `app/yaml` directory. This works the same way as the static version of Simplatra. For more information [read here](https://github.com/simplatra/simplatra#yaml-data).
 
@@ -119,12 +121,14 @@ $ cd simplatra-mvc && bundle install
 $ rake setup NAME=your-app-name && cd .
 ```
 
-Alternatively for the last step, if you want to recursively delete all `.gitkeep` files in the repository:
+Alternatively for the last step, if you want to recursively delete all `.gitkeep` files in the application subdirectories:
 
 ```bash
 # Sets up the application and recursively deletes all .gitkeep files
 $ rake setup NAME=your-app-name GITKEEP=true && cd .
 ```
+
+In this template, the `.gitkeep` files serve no purpose other than to preserve folder structure and empty folders in the Git repository.
 
 ## Running the application
 
@@ -180,13 +184,24 @@ Additionally, you can set up regular pinging for your Heroku application. If you
 2. On the sidebar on the left, under the `Reports` section, select `Availability`.
 3. In the URL text-box, enter the URL of your Heroku application (e.g. http://appname.herokuapp.com). Continue to the next screen and don't change any settings (unless you know what you're doing)!
 
----
+## Compatibility and testing
+
+This template (along with the [demo](https://github.com/simplatra/simplatra-mvc-demo) application) has been tested on:
+
+- macOS Sierra (Version 10.12.6)
+- Linux Debian 9
+
+However, there shouldn't be any reason for this to not work on other UNIX systems, and versions of different Linux distributions or other OSX versions.
+
+It may or may not require a bit of work to get this template working correctly on Windows.
+
+# Notes and references
 
 Special thanks to the authors of the following documents, blog posts and repositories - a lot of inspiration for Simplatra was drawn from them.
 
 The following blog posts and blog authors:
 
-- [Designing with Class: Sinatra + PostgreSQL +  Heroku](http://mherman.org/blog/2013/06/08/designing-with-class-sinatra-plus-postgresql-plus-heroku/#.Wk_oxEuYPox) - **Michael Herman**
+- [Designing with Class: Sinatra + PostgreSQL + Heroku](http://mherman.org/blog/2013/06/08/designing-with-class-sinatra-plus-postgresql-plus-heroku/#.Wk_oxEuYPox) - **Michael Herman**
 - [How to set up Sinatra with ActiveRecord](http://coding.jandavid.de/2016/02/08/how-to-set-up-sinatra-with-activerecord/) - **Jan David**
 
 The following pages on the official Sinatra website:
