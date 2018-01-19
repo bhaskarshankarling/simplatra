@@ -4,7 +4,7 @@
 
 # Simplatra MVC
 
-An extended version of [Simplatra](https://github.com/simplatra/simplatra) including ActiveRecord and Rake for creating more complete and dynamic web applications based on the Model-View-Controller architecture.
+An extended version of [Simplatra](https://github.com/simplatra/simplatra) including ActiveRecord and PostgreSQL+SQLite3 for creating more complete and dynamic web applications based on the Model-View-Controller architecture.
 
 ## Features
 
@@ -139,6 +139,16 @@ $ rackup
 ```
 
 All files located within directories of the asset pipeline are constantly being watched, and will update without having to restart the server with `rackup` again.
+
+### Interactive shell sessions
+
+To run the application in a way akin to `rails console` for Rails applications, you can run the following command in the base directory of the application:
+
+```bash
+$ irb -r app.rb
+```
+
+As the majority of `require` statements are made in `app.rb`, this will load in all of your classes (such as models) into the new IRB shell session, allowing you to use this session in the same way as `rails console`.
 
 ## Demonstration
 
