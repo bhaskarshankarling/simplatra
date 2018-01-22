@@ -1,17 +1,17 @@
-[![Dependency Status](https://beta.gemnasium.com/badges/github.com/simplatra/simplatra-mvc.svg)](https://beta.gemnasium.com/projects/github.com/simplatra/simplatra-mvc)
-[![Release](https://img.shields.io/github/release/simplatra/simplatra-mvc.svg)](https://github.com/simplatra/simplatra-mvc/releases)
-[![License](https://img.shields.io/github/license/simplatra/simplatra-mvc.svg)](https://github.com/simplatra/simplatra-mvc/blob/master/LICENSE)
+[![Dependency Status](https://beta.gemnasium.com/badges/github.com/simplatra/simplatra.svg)](https://beta.gemnasium.com/projects/github.com/simplatra/simplatra)
+[![Release](https://img.shields.io/github/release/simplatra/simplatra.svg)](https://github.com/simplatra/simplatra/releases)
+[![License](https://img.shields.io/github/license/simplatra/simplatra.svg)](https://github.com/simplatra/simplatra/blob/master/LICENSE)
 
-# Simplatra MVC
+# Simplatra
 
-An extended version of [Simplatra](https://github.com/simplatra/simplatra) including ActiveRecord and PostgreSQL+SQLite3 for creating more complete and dynamic web applications based on the Model-View-Controller architecture.
+A simple Model-View-Controller Sinatra template for creating more complete and dynamic web applications. Bundled with an asset pipeline, view helpers, stylesheet preprocessing, ActiveRecord and easy management of static data.
 
 ## Features
 
-Simplatra MVC utilises the following features, gem dependencies and services:
+Simplatra utilises the following features, gem dependencies and services:
 
 - **Deployment**: Heroku (https://www.heroku.com/)
-- **Web framework**: Sinatra (http://sinatrarb.com/)
+- **Web framework/DSL**: Sinatra (http://sinatrarb.com/)
 - **ORM**: *Rails* ActiveRecord (https://github.com/rails/rails/tree/master/activerecord)
 - **ORDBMS (production)**: PostgreSQL (https://www.postgresql.org/)
 - **ORDBMS (development)**: SQLite3 (https://www.sqlite.org/)
@@ -19,9 +19,12 @@ Simplatra MVC utilises the following features, gem dependencies and services:
 - **HTML templating**: ERB (https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html)
 - **HTML helpers**: Hanami (https://github.com/hanami/helpers)
 - **CSS preprocessing**: SCSS (http://sass-lang.com/)
-- **Task automation**: Rake (https://github.com/ruby/rake)
 - **Static site data**: YAML (http://yaml.org/)
 - **Performance monitoring**: New Relic RPM (https://github.com/newrelic/rpm)
+- **Tests/Specs**:
+    - RSpec (http://rspec.info/)
+    - Rack-Test (https://github.com/rack-test/rack-test)
+    - Shoulda-Matchers (http://matchers.shoulda.io/)
 
 ## Structure
 
@@ -42,69 +45,201 @@ The template's directory is currently structured as follows:
 │   │   ├── images         #
 │   │   ├── scripts        #
 │   │   └── stylesheets    #
-│   │       └── partials   #
-│   ├── controllers        #=> Controllers and routes
-│   │   └── application.rb #
-│   ├── helpers            #=> Helper methods for the application
-│   │   └── application.rb #
+│   │       └── partials   #=> SCSS partials
+│   ├── controllers        #=> Controllers/routes
+│   ├── helpers            #=> Helper methods
 │   ├── models             #=> Database models
 │   ├── views              #=> HTML views, partials and templates
 │   │   ├── partials       #
 │   │   └── templates      #
 │   └── yaml               #=> Static site data
-├── app.rb                 #=> CORE APPLICATION FILE
-├── config                 #=> Database, asset and static data config
-│   ├── assets.rb          #
-│   ├── data.rb            #
-│   ├── newrelic.yml       #
-│   └── database.yml       #
-└── config.ru              #=> config.ru for rack-based deployment
+├── app.rb                 #=> Core application data
+├── config                 #=> YAML configuration files
+│   ├── newrelic.yml       #=> NewRelic RPM configuration
+│   └── database.yml       #=> Database configuration
+├── config.ru              #=> config.ru for rack-based deployment
+└── spec                   #=> RSpec test files
+    ├── controllers        #=> Controller specs
+    ├── models             #=> Model specs
+    └── spec_helper.rb     #=> Spec helper
 ```
 
-### Template structure
+### Template structure and file generation
 
-#### Models - `app/models`
+#### Models: `app/models`
 
-To generate a new `ActiveRecord` model, use the following `rake` task:
+To generate a new `ActiveRecord` model, use the following rake task:
 
 ```bash
-# Generates a new model class file app/models/model_name.rb (parameters: NAME)
-$ rake generate:model NAME=ModelName
+# Generates a new model class file app/models/test.rb (parameters: NAME)
+$ rake generate:model NAME=Test
 ```
 
-#### Views - `app/views`
+> Of course replacing `Test` with the desired name of the model.
+
+This rake task will also generate a spec file for this controller at `spec/model/test_spec.rb`.
+
+#### Views: `app/views`
 
 The `app/views` directory should contain all of the `HTML`/`ERB`-related view files of the application, including templates, partials etc.
 
-#### Controllers - `app/controllers`
+#### Controllers: `app/controllers`
 
 Multiple routes can be declared in a single controller file. However, you may have multiple controller files with their own routes.
 
-The core application controller is named `application.rb`. It should contain routes which are core to the application, such as 404 routes and index routes.
+The core application controller is named `application_controller.rb`. It should contain routes which are core to the application, such as 404 routes and index routes.
 
-To generate a new controller file, use the following `rake` task:
+To generate a new controller file, use the following rake task:
 
 ```bash
-# Generates a new controller class file app/controllers/controller_name.rb (parameters: NAME)
-$ rake generate:controller NAME=ControllerName
+# Generates a new controller class file app/controllers/test_controller.rb (parameters: NAME)
+$ rake generate:controller NAME=Test
 ```
 
-#### Helpers - `app/helpers`
+> Of course replacing `Test` with the desired name of the controller.
+
+This rake task will also generate a spec file for this controller at `spec/controllers/test_controller_spec.rb`.
+
+#### Helpers: `app/helpers`
 
 Similarly to routes, multiple helper methods can be declared in a single helper file. But you can also have multiple helper files.
 
-The core application helper file is named `application.rb`.
+The core application helper file is named `application_helper.rb`.
 
-To generate a new helper file, use the following `rake` task:
+To generate a new helper file, use the following rake task:
 
 ```bash
-# Generates a new helper class file app/helpers/helper_name.rb (parameters: NAME)
-$ rake generate:helper NAME=HelperName
+# Generates a new helper class file app/helpers/test_helper.rb (parameters: NAME)
+$ rake generate:helper NAME=Test
 ```
 
-#### Static data - `app/yaml`
+> Of course replacing `Test` with the desired name of the helper.
 
-Static data can be stored in `YAML` files in the `app/yaml` directory. This works the same way as the static version of Simplatra. For more information [read here](https://github.com/simplatra/simplatra#yaml-data).
+---
+
+#### Scaffolding
+
+Rather than running each rake task separately to generate the above files, it is possible to generate them together with the `generate:scaffold` task:
+
+```bash
+# Generates a scaffold (parameters: NAME, CONTROLLER, HELPER, MODEL)
+$ rake generate:scaffold NAME=Test
+```
+
+> Of course replacing `Test` with the desired name of the scaffold.
+
+This in turn will run the following rake tasks in order:
+
+1. `rake generate:helper NAME=Test`
+2. `rake generate:controller NAME=Test`
+3. `rake generate:model NAME=Test`
+
+Alternatively if you don't want to generate all three of these, you can use flags to toggle them.
+
+> Example: To generate a model and helper, but no controller:
+>
+> `rake generate:scaffold NAME=Test CONTROLLER=false`
+
+> Example: To generate only a controller:
+>
+> `rake generate:scaffold NAME=Test MODEL=false HELPER=false`
+
+---
+
+#### Static data: `app/yaml`
+
+Static site data can be stored in YAML files in the `app/yaml` directory. File extensions can be either `.yml` or `.yaml`.
+
+- It is essential that the file name is a valid Ruby method name (the reason for this is that a method is dynamically created to allow access to data within this YAML file)
+
+##### Example
+
+YAML data can be accessed with the `data` application helper method, followed by calling the dynamically defined method with the same name as the YAML file - so in this case, `data.index`.
+
+```yaml
+# app/yaml/index.yml
+features:
+  - "Sinatra"
+  - "Sprockets"
+  - "SASS"
+  - "Hanami"
+```
+
+```erb
+<!-- app/views/index.erb -->
+<html>
+    <body>
+        <% data.index['features'].each do |feature| %>
+        <h1><%= feature %></h1>
+        <% end %>
+    </body>
+</html>
+```
+
+This generates the following `HTML`:
+
+```html
+<html>
+    <body>
+        <h1>Sinatra</h1>
+      	<h1>Sprockets</h1>
+      	<h1>SASS</h1>
+        <h1>Hanami</h1>
+    </body>
+</html>
+```
+
+### Asset pipeline
+
+All the configuration for the asset pipeline is already done, including directories for `stylesheets`, `scripts`, `images` and `fonts`.
+
+If you would like to add more directories to be included in the asset pipeline, simply add them to this section in the `app.rb` file:
+
+```ruby
+# Prepare asset pipeline
+set :environment, Sprockets::Environment.new
+environment.append_path './app/assets/stylesheets'
+environment.append_path './app/assets/scripts'
+environment.append_path './app/assets/images'
+environment.append_path './app/assets/fonts'
+environment.css_compressor = :scss
+get '/assets/*' do
+    env["PATH_INFO"].sub!('/assets','')
+    settings.environment.call(env)
+end
+```
+
+The default stylesheet preprocessor is set as `scss`, but this can also be changed.
+
+#### Examples
+
+When using any asset within the asset pipeline, simply use the reference `/assets/asset.ext` where `asset` is the specific asset with the extension `ext`.
+
+There is no need to include the subdirectory in `assets` where the asset is located, as this is the purpose of the asset pipeline.
+
+> Example: Don't do `/assets/images/img.png`, instead do `/assets/img.png`.
+
+For example:
+
+```html
+<!-- index.html -->
+<html>
+    <head>
+      	<link rel="icon" href="/assets/favicon.png" sizes="16x16 32x32" type="image/png">
+      	<link rel="stylesheet" href="/assets/index.css">
+    </head>
+    <body>
+        <img src="/assets/sss.png"
+    </body>
+</html>
+```
+
+```scss
+/* index.scss */
+body {
+	background-image: url('/assets/bg.gif');
+}
+```
 
 ## Installation
 
@@ -112,10 +247,10 @@ To to prepare this template for usage in your application:
 
 ```bash
 # Clone into the repository
-$ git clone https://github.com/simplatra/simplatra-mvc.git
+$ git clone https://github.com/simplatra/simplatra.git
 
 # Change directory and install dependencies
-$ cd simplatra-mvc && bundle install
+$ cd simplatra && bundle install
 
 # Set up the application
 $ rake setup NAME=your-app-name && cd .
@@ -140,6 +275,20 @@ $ rackup
 
 All files located within directories of the asset pipeline are constantly being watched, and will update without having to restart the server with `rackup` again.
 
+### Tests
+
+To run all of specs in the `spec` directory, run:
+
+```bash
+$ rake
+```
+
+Or:
+
+```bash
+$ rspec spec
+```
+
 ### Interactive shell sessions
 
 To run the application in a way akin to `rails console` for Rails applications, you can run the following command in the base directory of the application:
@@ -152,13 +301,11 @@ As the majority of `require` statements are made in `app.rb`, this will load in 
 
 ## Demonstration
 
-[View the demo application here](https://github.com/simplatra/simplatra-mvc-demo).
-
-This demo only showcases new MVC features which were not present in Simplatra such as models and database migrations & configuration. For a general demo on Simplatra, [click here](https://github.com/simplatra/simplatra-demo).
+[View the demo application here](https://github.com/simplatra/simplatra-demo).
 
 ## Deployment
 
-Simplatra MVC is bundled and set up to be deployed on Heroku, so this would probably be the easiest way to deploy your application. Although this README won't explain other methods of deployment, feel free to deploy however you like!
+Simplatra is bundled and set up to be deployed on Heroku, so this would probably be the easiest way to deploy your application. Although this README won't explain other methods of deployment, feel free to deploy however you like!
 
 ### Deploying to [Heroku](https://www.heroku.com/)
 
@@ -196,7 +343,7 @@ Additionally, you can set up regular pinging for your Heroku application. If you
 
 ## Compatibility and testing
 
-This template (along with the [demo](https://github.com/simplatra/simplatra-mvc-demo) application) has been tested on:
+This template (along with the [demo](https://github.com/simplatra/simplatra-demo) application) has been tested on:
 
 - macOS Sierra (Version 10.12.6)
 - Linux Debian 9
@@ -213,6 +360,7 @@ The following blog posts and blog authors:
 
 - [Designing with Class: Sinatra + PostgreSQL + Heroku](http://mherman.org/blog/2013/06/08/designing-with-class-sinatra-plus-postgresql-plus-heroku/#.Wk_oxEuYPox) - **Michael Herman**
 - [How to set up Sinatra with ActiveRecord](http://coding.jandavid.de/2016/02/08/how-to-set-up-sinatra-with-activerecord/) - **Jan David**
+- [Structuring Sinatra Applications](https://nickcharlton.net/posts/structuring-sinatra-applications.html) - **Nick Charlton**
 
 The following pages on the official Sinatra website:
 

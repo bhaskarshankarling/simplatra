@@ -1,12 +1,12 @@
-class Application < Sinatra::Base
-    # Index routes
-    %w(/ /index /home).each do |path|
+class ApplicationController < Sinatra::Base
+    helpers ApplicationHelper, Hanami::Helpers, Hanami::Assets::Helpers
+
+    %w[/ /index /home].each do |path|
         get path do
             erb :index, layout: :'templates/layout'
         end
     end
 
-    # 404 routes
     error Sinatra::NotFound do
         redirect to('/')
     end

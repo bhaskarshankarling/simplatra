@@ -18,18 +18,20 @@ gem 'sass'
 gem 'hanami-helpers'
 gem 'hanami-assets'
 
-# Development database adapter
-group :development do
-    gem 'sqlite3'
-end
-# Production database adapter
-group :production do
-    gem 'pg'
-end
-
-# ActiveRecord for models and databases
+# ActiveRecord for models and records
 gem 'activerecord'
 gem 'sinatra-activerecord'
 
 # NewRelic RPM for monitoring
 gem 'newrelic_rpm'
+
+group :development, :test do
+    gem 'sqlite3'
+    gem 'rack-test'
+    gem 'rspec'
+    gem 'shoulda-matchers'
+end
+
+group :production do
+    gem 'pg'
+end
