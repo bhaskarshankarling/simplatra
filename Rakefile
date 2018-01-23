@@ -3,6 +3,13 @@ require 'sinatra/activerecord/rake'
 require 'active_support/core_ext'
 require './app.rb'
 
+task :default => [:spec]
+
+desc 'Run specs'
+task :spec do
+  sh 'rspec spec'
+end
+
 desc 'Sets up the application. (parameters: NAME, GITKEEP=true/false)'
 task :setup do
     unless ENV.has_key? 'NAME'

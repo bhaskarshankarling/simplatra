@@ -22,9 +22,6 @@ gem 'hanami-assets'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 
-# NewRelic RPM for monitoring
-gem 'newrelic_rpm'
-
 group :development, :test do
     gem 'sqlite3'
     gem 'rack-test'
@@ -34,4 +31,5 @@ end
 
 group :production do
     gem 'pg', '~> 0.20'
+    gem 'newrelic_rpm'
 end

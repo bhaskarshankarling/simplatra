@@ -16,11 +16,12 @@ Simplatra utilises the following features, gem dependencies and services:
 - **ORDBMS (production)**: PostgreSQL (https://www.postgresql.org/)
 - **ORDBMS (development)**: SQLite3 (https://www.sqlite.org/)
 - **Asset pipeline**: *Rails* Sprockets (https://github.com/rails/sprockets)
-- **HTML templating**: ERB (https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html)
+- **Templating engine**: ERB (https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html)
 - **HTML helpers**: Hanami (https://github.com/hanami/helpers)
 - **CSS preprocessing**: SCSS (http://sass-lang.com/)
 - **Static site data**: YAML (http://yaml.org/)
 - **Performance monitoring**: New Relic RPM (https://github.com/newrelic/rpm)
+- **Continuous integration**: Travis CI (https://travis-ci.org/)
 - **Tests/Specs**:
     - RSpec (http://rspec.info/)
     - Rack-Test (https://github.com/rack-test/rack-test)
@@ -283,6 +284,8 @@ To run all of specs in the `spec` directory, run:
 $ rspec spec
 ```
 
+Or simply `$ rake`, as `rspec spec` is the default rake task.
+
 ## Demonstration
 
 [View the demo application here](https://github.com/simplatra/simplatra-demo).
@@ -305,7 +308,7 @@ After deploying your application to Heroku, you may also need to add the Heroku 
 $ heroku config
 ```
 
-If you can see the DATABASE_URL environment variable, then you don't need to do anything. However, if you cannot see it, you will need to attach the add-on with:
+If you can see the `DATABASE_URL` environment variable, then you don't need to do anything. However, if you cannot see it, you will need to attach the add-on with:
 
 ```bash
 $ heroku addons:create heroku-postgresql:hobby-basic
@@ -352,7 +355,7 @@ This template (along with the [demo](https://github.com/simplatra/simplatra-demo
 - macOS Sierra (Version 10.12.6)
 - Linux Debian 9
 
-However, there shouldn't be any reason for this to not work on other UNIX systems, and versions of different Linux distributions or other OSX versions.
+However, there shouldn't be any reason for this to not work on other UNIX systems, and versions of different Linux distributions or other macOS versions.
 
 It may or may not require a bit of work to get this template working correctly on Windows.
 
