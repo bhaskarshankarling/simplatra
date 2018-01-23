@@ -22,11 +22,13 @@ gem 'hanami-assets'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 
+# Testing and specs
+gem 'rack-test'
+gem 'rspec'
+gem 'shoulda-matchers'
+
 group :development, :test do
     gem 'sqlite3'
-    gem 'rack-test'
-    gem 'rspec'
-    gem 'shoulda-matchers'
 end
 
 group :production do
