@@ -283,16 +283,6 @@ To run all of specs in the `spec` directory, run:
 $ rspec spec
 ```
 
-### Interactive shell sessions
-
-To run the application in a way akin to `rails console` for Rails applications, you can run the following command in the base directory of the application:
-
-```bash
-$ irb -r app.rb
-```
-
-As the majority of `require` statements are made in `app.rb`, this will load in all of your classes (such as models) into the new IRB shell session, allowing you to use this session in the same way as `rails console`.
-
 ## Demonstration
 
 [View the demo application here](https://github.com/simplatra/simplatra-demo).
@@ -307,6 +297,26 @@ If you plan to deploy your Sinatra application with Heroku, there is already a `
 
 ```
 web: bundle exec rackup config.ru -p $PORT
+```
+
+After deploying your application to Heroku, you may also need to add the Heroku Postgres add-on to your application. To check if you do, run the following command in the Heroku CLI:
+
+```bash
+$ heroku config
+```
+
+If you can see the DATABASE_URL environment variable, then you don't need to do anything. However, if you cannot see it, you will need to attach the add-on with:
+
+```bash
+$ heroku addons:create heroku-postgresql:hobby-basic
+```
+
+Or alternatively, you can do this through your application's dashboard on Heroku.
+
+Once you have attached the add-on to your application, you must restart the dyno with:
+
+```bash
+$ heroku restart
 ```
 
 #### Buildpack
