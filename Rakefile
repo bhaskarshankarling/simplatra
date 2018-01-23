@@ -1,11 +1,7 @@
 require 'sinatra/activerecord'
 require 'sinatra/activerecord/rake'
 require 'active_support/core_ext'
-require 'rspec/core/rake_task'
 require './app.rb'
-
-RSpec::Core::RakeTask.new(:spec)
-task :default => [:spec]
 
 desc 'Sets up the application. (parameters: NAME, GITKEEP=true/false)'
 task :setup do
