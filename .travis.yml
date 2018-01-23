@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.5.0
+script: rspec spec
+services:
+  - postgresql
+addons:
+  postgresql: '10.1'
