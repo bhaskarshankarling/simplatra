@@ -21,9 +21,6 @@ class ApplicationController < Sinatra::Base
     # Set views, templates and partials
     set :views, ->{"#{File.dirname(__FILE__)}/app/views"}
 
-    # Set database configuration
-    set :database, (settings.environment == :production) ? ENV['DATABASE_URL'] : 'config/database.yml'
-
     # Prepare YAML data accessors
     class StaticData
         FILES = Dir.entries('./app/yaml').select{|f|!File.directory?(f)}

@@ -275,15 +275,9 @@ $ rackup
 
 All files located within directories of the asset pipeline are constantly being watched, and will update without having to restart the server with `rackup` again.
 
-### Tests
+### Specs
 
 To run all of specs in the `spec` directory, run:
-
-```bash
-$ rake
-```
-
-Or:
 
 ```bash
 $ rspec spec
