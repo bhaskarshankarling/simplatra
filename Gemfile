@@ -26,7 +26,6 @@ group :development, :test do
     gem 'sqlite3'
     gem 'rack-test'
     gem 'rspec'
-    gem 'rspec-core'
     gem 'shoulda-matchers'
 end
 
