@@ -27,7 +27,7 @@ class ApplicationController < Sinatra::Base
         YML_FILES = FILES.select{|f|f.end_with?('.yml','.yaml')}
         YML_FILES.map{|f|{name: File.basename(f,'.*'),ext: File.extname(f)}}.each do |f|
             if /[@$"]/ !~ f[:name].to_sym.inspect
-                define_method f[:name].to_sym do YAML.load_file "./app/yaml/#{f[:name]+f[:ext]}" end
+                define_method(f[:name].to_sym){YAML.load_file "./app/yaml/#{f[:name]+f[:ext]}"}
             end
         end
     end
