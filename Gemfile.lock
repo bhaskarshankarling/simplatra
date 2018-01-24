@@ -90,7 +90,6 @@ DEPENDENCIES
   rack-test
   rake
   rspec
-  rspec-core
   sass
   shoulda-matchers
   sinatra
