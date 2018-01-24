@@ -348,17 +348,6 @@ Additionally, you can set up regular pinging for your Heroku application. If you
 2. On the sidebar on the left, under the `Reports` section, select `Availability`.
 3. In the URL text-box, enter the URL of your Heroku application (e.g. http://appname.herokuapp.com). Continue to the next screen and don't change any settings (unless you know what you're doing)!
 
-## Compatibility and testing
-
-This template (along with the [demo](https://github.com/simplatra/simplatra-demo) application) has been tested on:
-
-- macOS Sierra (Version 10.12.6)
-- Linux Debian 9
-
-However, there shouldn't be any reason for this to not work on other UNIX systems, and versions of different Linux distributions or other macOS versions.
-
-It may or may not require a bit of work to get this template working correctly on Windows.
-
 # Notes and references
 
 Special thanks to the authors of the following documents, blog posts and repositories - a lot of inspiration for Simplatra was drawn from them.
