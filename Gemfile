@@ -10,9 +10,10 @@ gem 'rake'
 # Sinatra
 gem 'sinatra'
 
-# Asset pipeline and preprocessors
+# Asset pipeline and preprocessors/compressors
 gem 'sprockets'
 gem 'sass'
+gem 'uglifier'
 
 # Hanami HTML/asset helpers
 gem 'hanami-helpers'

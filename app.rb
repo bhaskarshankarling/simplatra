@@ -3,6 +3,7 @@ require 'yaml'
 require 'sinatra/base'
 require 'sprockets'
 require 'sass'
+require 'uglifier'
 require 'hanami/helpers'
 require 'hanami/assets'
 require 'hanami/assets/helpers'
@@ -41,6 +42,7 @@ class ApplicationController < Sinatra::Base
     environment.append_path './app/assets/images'
     environment.append_path './app/assets/fonts'
     environment.css_compressor = :scss
+    environment.js_compressor = :uglify
     get '/assets/*' do
         env["PATH_INFO"].sub!('/assets','')
         settings.environment.call(env)

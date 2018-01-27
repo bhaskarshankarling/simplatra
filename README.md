@@ -6,6 +6,28 @@
 
 A simple Model-View-Controller Sinatra template for creating more complete and dynamic web applications. Bundled with an asset pipeline, view helpers, stylesheet preprocessing, ActiveRecord and easy management of static data.
 
+# Index
+
+- [Features](https://github.com/simplatra/simplatra#features) - List of dependencies, gems and features.
+- [Structure](https://github.com/simplatra/simplatra#structure) - Description of the directory structure.
+  - [Directory tree](https://github.com/simplatra/simplatra#directory-tree) - Visual representation of the directory structure.
+  - [Template structure and file generation](https://github.com/simplatra/simplatra#template-structure-and-file-generation) - How to use `rake` tasks to generate models, controllers and helpers.
+    - [Models](https://github.com/simplatra/simplatra#models-appmodels)
+    - [Views](https://github.com/simplatra/simplatra#views-appviews)
+    - [Controllers](https://github.com/simplatra/simplatra#controllers-appcontrollers)
+    - [Helpers](https://github.com/simplatra/simplatra#helpers-apphelpers)
+    - [**Scaffolding**](https://github.com/simplatra/simplatra#scaffolding) - Generating all required MVC files for a specific object.
+    - [Static data](https://github.com/simplatra/simplatra#static-data-appyaml) - How to access static site data stored in `YAML` files.
+  - [Asset pipeline](https://github.com/simplatra/simplatra#asset-pipeline) - Management of assets, and how to use the asset pipeline to shorten asset file paths.
+- **[Installation](https://github.com/simplatra/simplatra#installation) - Setting up your application**
+- **[Running](https://github.com/simplatra/simplatra#running-the-application) - Running your application with `rackup`, and running specs.**
+- [**Demonstration**](https://github.com/simplatra/simplatra#demonstration) - See a demo application in action.
+- [Deployment](https://github.com/simplatra/simplatra#deployment) - Instructions for deploying your application to Heroku.
+- [Performance monitoring](https://github.com/simplatra/simplatra#performance-monitoring-with-new-relic-rpm-and-heroku) - Mini-guide on setting up New Relic RPM to keep watch over your application.
+- [Notes and references](https://github.com/simplatra/simplatra#notes-and-references) - Resources used during the development of Simplatra.
+
+---
+
 ## Features
 
 Simplatra utilises the following features, gem dependencies and services:
@@ -19,6 +41,7 @@ Simplatra utilises the following features, gem dependencies and services:
 - **Templating engine**: ERB (https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html)
 - **HTML helpers**: Hanami (https://github.com/hanami/helpers)
 - **CSS preprocessing**: SCSS (http://sass-lang.com/)
+- **JS compression**: Uglifier (https://github.com/lautis/uglifier)
 - **Static site data**: YAML (http://yaml.org/)
 - **Performance monitoring**: New Relic RPM (https://github.com/newrelic/rpm)
 - **Continuous integration**: Travis CI (https://travis-ci.org/)
@@ -78,7 +101,7 @@ $ rake generate:model NAME=Test
 
 > Of course replacing `Test` with the desired name of the model.
 
-This rake task will also generate a spec file for this controller at `spec/model/test_spec.rb`.
+This rake task will also generate a spec file for this model at `spec/model/test_spec.rb`.
 
 #### Views: `app/views`
 
@@ -204,13 +227,10 @@ environment.append_path './app/assets/scripts'
 environment.append_path './app/assets/images'
 environment.append_path './app/assets/fonts'
 environment.css_compressor = :scss
-get '/assets/*' do
-    env["PATH_INFO"].sub!('/assets','')
-    settings.environment.call(env)
-end
+environment.js_compressor = :uglify
 ```
 
-The default stylesheet preprocessor is set as `scss`, but this can also be changed.
+The default asset compressors are `uglify` and `scss`, but feel free to change this (or the configurations).
 
 #### Examples
 
@@ -257,7 +277,7 @@ $ cd simplatra && bundle install
 $ rake setup NAME=your-app-name && cd .
 ```
 
-Alternatively for the last step, if you want to recursively delete all `.gitkeep` files in the application subdirectories:
+Alternatively for the last step, if you want to recursively delete all `.gitkeep` files in the application's subdirectories:
 
 ```bash
 # Sets up the application and recursively deletes all .gitkeep files
@@ -266,7 +286,7 @@ $ rake setup NAME=your-app-name GITKEEP=true && cd .
 
 In this template, the `.gitkeep` files serve no purpose other than to preserve folder structure and empty folders in the Git repository.
 
-## Running the application
+## Running
 
 To run the application, simply use:
 
