@@ -100,6 +100,7 @@ namespace :generate do
         else
             File.open(file_path, 'w+') do |f|
                 f.write(<<-EOF.strip_heredoc)
+                    require_relative 'application_controller'
                     class #{class_name} < ApplicationController
                         helpers #{class_name.gsub 'Controller', 'Helper'}
                     end

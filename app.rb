@@ -12,7 +12,6 @@ require 'sinatra/activerecord'
 require 'sinatra/activerecord/rake'
 require 'active_support'
 require 'active_support/core_ext'
-require 'newrelic_rpm'
 Dir["#{File.dirname(__FILE__)}/app/helpers/*.rb"].each{|file|require file}
 Dir["#{File.dirname(__FILE__)}/app/models/*.rb"].each{|file|require file}
 Dir["#{File.dirname(__FILE__)}/app/controllers/*.rb"].each{|file|require file}
