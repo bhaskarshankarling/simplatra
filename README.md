@@ -43,7 +43,6 @@ Simplatra utilises the following features, gem dependencies and services:
 - **CSS preprocessing**: SCSS (http://sass-lang.com/)
 - **JS compression**: Uglifier (https://github.com/lautis/uglifier)
 - **Static site data**: YAML (http://yaml.org/)
-- **Performance monitoring**: New Relic RPM (https://github.com/newrelic/rpm)
 - **Continuous integration**: Travis CI (https://travis-ci.org/)
 - **Tests/Specs**:
     - RSpec (http://rspec.info/)
@@ -356,7 +355,7 @@ Ensure that you set the `DATABASE_URL` environment variable in your Heroku setti
 
 New Relic RPM can be used for monitoring the performance of your application once deployed. Heroku has an add-on for New Relic RPM with free and paid plans. To use New Relic RPM:
 
-1. Configure your New Relic settings in the configuration file `config/newrelic.yml` of your application. For more information on configuring the `newrelic.yml` file, [read this document](https://docs.newrelic.com/docs/agents/ruby-agent/configuration/ruby-agent-configuration)
+1. Configure your New Relic settings in a new configuration file `config/newrelic.yml` in your application. For more information on configuring the `newrelic.yml` file, [read this document](https://docs.newrelic.com/docs/agents/ruby-agent/configuration/ruby-agent-configuration)
 2. Deploy your application as normal on Heroku
 3. Open the application page of your newly-made application from your [Heroku dashboard](https://dashboard.heroku.com/apps)
 4. Search for the `New Relic APM` add-on, select a plan and add it to your app

@@ -1,4 +1,4 @@
-require_relative 'app.rb'
+require './app'
 Dir["#{File.dirname(__FILE__)}/app/controllers/*.rb"]
     .map{|f|File.basename(f,'.*').camelize}
     .reject(&'ApplicationController'.method(:==))
