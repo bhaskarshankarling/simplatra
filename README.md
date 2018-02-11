@@ -313,7 +313,7 @@ For an idea of how a small-medium sized Simplatra application should look like, 
 
 - [Official demo application](https://github.com/simplatra/simplatra-demo)
 - [Official Simplatra website](https://github.com/simplatra/simplatra-website)
-- [Edinburgh University Transhumanism Society](https://github.com/eonu/thsoc) (Includes `warden` gem, Rack::Proection, user authentication and password encryption with `bcrypt`)
+- [Edinburgh University Transhumanism Society](https://github.com/eonu/thsoc) (Includes `warden` gem, `Rack::Protection`, user authentication and password encryption with `bcrypt`)
 
 ## Deployment
 
