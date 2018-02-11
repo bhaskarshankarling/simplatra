@@ -1,8 +1,9 @@
-# Logs and databases
+# Logs, databases and sensitive files
 *.log
 *.sql
 *.sqlite
 *.sqlite3
+*.dump
 
 # OS generated files
 .DS_Store

@@ -12,6 +12,7 @@ require 'sinatra/activerecord'
 require 'sinatra/activerecord/rake'
 require 'active_support'
 require 'active_support/core_ext'
+require 'lumberjack'
 Dir["#{File.dirname(__FILE__)}/app/helpers/*.rb"].each{|file|require file}
 Dir["#{File.dirname(__FILE__)}/app/models/*.rb"].each{|file|require file}
 Dir["#{File.dirname(__FILE__)}/app/controllers/*.rb"].each{|file|require file}
@@ -21,13 +22,22 @@ class ApplicationController < Sinatra::Base
     # Set views, templates and partials
     set :views, ->{"#{File.dirname(__FILE__)}/app/views"}
 
+    # Set logger variables
+    %i[test production development].each do |env|
+        configure env do
+            set :logger, ->{Lumberjack::Logger.new("logs/#{env}.log")}
+        end
+    end
+
     # Prepare YAML data accessors
     class StaticData
-        FILES = Dir.entries('./app/yaml').select{|f|!File.directory?(f)}
-        YML_FILES = FILES.select{|f|f.end_with?('.yml','.yaml')}
-        YML_FILES.map{|f|{name: File.basename(f,'.*'),ext: File.extname(f)}}.each do |f|
+        @all_files = Dir.entries('./app/yaml').select{|f|!File.directory?(f)}
+        @yml_files = @all_files.select{|f|f.end_with?('.yml','.yaml')}
+        @yml_files.map{|f|{name: File.basename(f,'.*'),ext: File.extname(f)}}.each do |f|
             if /[@$"]/ !~ f[:name].to_sym.inspect
                 define_method(f[:name].to_sym){YAML.load_file "./app/yaml/#{f[:name]+f[:ext]}"}
+            else
+                raise NameError.new("YAML file name '#{f[:name]}' must be a valid Ruby method name.")
             end
         end
     end
