@@ -30,7 +30,7 @@ A simple Model-View-Controller Sinatra template for creating more complete and d
 
 ## Features
 
-Simplatra utilises the following features, gem dependencies and services:
+Simplatra has the following features, and uses the following gems and services:
 
 - **Deployment**: Heroku (https://www.heroku.com/)
 - **Web framework/DSL**: Sinatra (http://sinatrarb.com/)
@@ -44,6 +44,7 @@ Simplatra utilises the following features, gem dependencies and services:
 - **JS compression**: Uglifier (https://github.com/lautis/uglifier)
 - **Static site data**: YAML (http://yaml.org/)
 - **Continuous integration**: Travis CI (https://travis-ci.org/)
+- **Logging**: Lumberjack (https://github.com/bdurand/lumberjack)
 - **Tests/Specs**:
     - RSpec (http://rspec.info/)
     - Rack-Test (https://github.com/rack-test/rack-test)
@@ -78,9 +79,8 @@ The template's directory is currently structured as follows:
 │   └── yaml               #=> Static site data
 ├── app.rb                 #=> Core application data
 ├── config                 #=> YAML configuration files
-│   ├── newrelic.yml       #=> NewRelic RPM configuration
 │   └── database.yml       #=> Database configuration
-├── config.ru              #=> config.ru for rack-based deployment
+├── config.ru              #=> config.ru for deployment
 └── spec                   #=> RSpec test files
     ├── controllers        #=> Controller specs
     ├── models             #=> Model specs
@@ -122,6 +122,8 @@ $ rake generate:controller NAME=Test
 > Of course replacing `Test` with the desired name of the controller.
 
 This rake task will also generate a spec file for this controller at `spec/controllers/test_controller_spec.rb`.
+
+**NOTE**: Mapping URL routes is currently not supported, as Rack `use`s controllers (other than `ApplicationController`) rather than `run`ning them.
 
 #### Helpers: `app/helpers`
 
@@ -307,7 +309,11 @@ Or simply `$ rake`, as `rspec spec` is the default rake task.
 
 ## Demonstration
 
-[View the demo application here](https://github.com/simplatra/simplatra-demo).
+For an idea of how a small-medium sized Simplatra application should look like, take a look at the following examples:
+
+- [Official demo application](https://github.com/simplatra/simplatra-demo)
+- [Official Simplatra website](https://github.com/simplatra/simplatra-website)
+- [Edinburgh University Transhumanism Society](https://github.com/eonu/thsoc) (Includes `warden` gem, Rack::Proection, user authentication and password encryption with `bcrypt`)
 
 ## Deployment
 

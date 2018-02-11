@@ -23,6 +23,9 @@ gem 'hanami-assets'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 
+# Logging
+gem 'lumberjack'
+
 group :development, :test do
     gem 'sqlite3'
     gem 'rack-test'
