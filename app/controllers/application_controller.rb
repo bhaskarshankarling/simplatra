@@ -3,15 +3,16 @@ class ApplicationController < Sinatra::Base
 
     %w[/ /index /home].each do |path|
         get path do
-            erb :index, layout: :'templates/layout'
+            erb :index
         end
     end
 
     error Sinatra::NotFound do
-        redirect to('/')
+        redirect '/404'
     end
+
     get '/404' do
-        redirect to('/')
+        redirect '/'
     end
 
     # Add your other routes here...

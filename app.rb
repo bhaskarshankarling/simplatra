@@ -22,6 +22,9 @@ class ApplicationController < Sinatra::Base
     # Set views, templates and partials
     set :views, ->{"#{File.dirname(__FILE__)}/app/views"}
 
+    # Set default ERB template
+    set :erb, layout: :'templates/layout'
+
     # Set logger variables
     %i[test production development].each do |env|
         configure env do
@@ -55,5 +58,19 @@ class ApplicationController < Sinatra::Base
     get '/assets/*' do
         env["PATH_INFO"].sub!('/assets','')
         settings.environment.call(env)
+    end
+
+    # Application manifest file accessor method
+    def application(*args)
+        html = String.new
+        css_syms = %i[css stylesheet]
+        js_syms = %i[js javascript]
+        args.map(&:to_sym).each do |arg|
+            html << stylesheet('application') if css_syms.include? arg
+            html << javascript('application') if js_syms.include? arg
+        end
+        html
+    rescue
+        raise ArgumentError.new("Expected arguments to be any of: #{css_syms+js_syms}")
     end
 end
