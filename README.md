@@ -251,7 +251,7 @@ For example:
       	<link rel="stylesheet" href="/assets/index.css">
     </head>
     <body>
-        <img src="/assets/sss.png"
+        <img src="/assets/simplatra.png">
     </body>
 </html>
 ```
