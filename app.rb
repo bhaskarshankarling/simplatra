@@ -13,10 +13,10 @@ require 'sinatra/activerecord/rake'
 require 'active_support'
 require 'active_support/core_ext'
 require 'lumberjack'
+Dir["#{File.dirname(__FILE__)}/config/*.rb"].each{|file|require file}
 Dir["#{File.dirname(__FILE__)}/app/helpers/*.rb"].each{|file|require file}
 Dir["#{File.dirname(__FILE__)}/app/models/*.rb"].each{|file|require file}
 Dir["#{File.dirname(__FILE__)}/app/controllers/*.rb"].each{|file|require file}
-Dir["#{File.dirname(__FILE__)}/config/*.rb"].each{|file|require file}
 
 class ApplicationController < Sinatra::Base
     # Set views, templates and partials
@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
     # Set logger variables
     %i[test production development].each do |env|
         configure env do
-            set :logger, ->{Lumberjack::Logger.new("logs/#{env}.log")}
+            set :logger, ->{Lumberjack::Logger.new("log/#{env}.log")}
         end
     end
 
