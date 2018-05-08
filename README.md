@@ -60,31 +60,35 @@ The template's directory is currently structured as follows:
 
 ```ruby
 .
-├── Gemfile                #=> Gemfile for dependencies and versions
-├── Procfile               #=> Process types for Heroku deployment
-├── Rakefile               #=> Rakefile for task automation
-├── app                    #
-│   ├── assets             #=> Assets for pipelining
-│   │   ├── fonts          #
-│   │   ├── images         #
-│   │   ├── scripts        #
-│   │   └── stylesheets    #
-│   │       └── partials   #=> SCSS partials
-│   ├── controllers        #=> Controllers/routes
-│   ├── helpers            #=> Helper methods
-│   ├── models             #=> Database models
-│   ├── views              #=> HTML views, partials and templates
-│   │   ├── partials       #
-│   │   └── templates      #
-│   └── yaml               #=> Static site data
-├── app.rb                 #=> Core application data
-├── config                 #=> YAML configuration files
-│   └── database.yml       #=> Database configuration
-├── config.ru              #=> config.ru for deployment
-└── spec                   #=> RSpec test files
-    ├── controllers        #=> Controller specs
-    ├── models             #=> Model specs
-    └── spec_helper.rb     #=> Spec helper
+├── Gemfile                        #=> Gemfile for dependencies and versions
+├── LICENSE                        #=> MIT licensing
+├── Procfile                       #=> Process types for Heroku deployment
+├── Rakefile                       #=> Rakefile for task automation
+├── app                            #
+│   ├── assets                     #=> Assets for pipelining
+│   │   ├── fonts                  #
+│   │   ├── images                 #
+│   │   ├── scripts                #
+│   │   │   └── application.js     #=> Javascript manifest file
+│   │   └── stylesheets            #
+│   │       ├── application.scss   #=> Stylesheet manifest file
+│   │       └── partials           #
+│   ├── controllers                #=> Controllers/routes
+│   ├── helpers                    #=> Helper methods
+│   ├── models                     #=> Database models
+│   ├── views                      #=> HTML views, partials and templates
+│   │   ├── partials               #
+│   │   └── templates              #
+│   └── yaml                       #=> Static site data
+├── app.rb                         #=> Core application data
+├── config                         #
+│   ├── database.yml               #=> Database configuration
+│   └── initializers.rb            #=> Initializers file
+├── config.ru                      #=> config.ru for rack instructions
+├── log                            #=> Log files
+└── spec                           #=> RSpec test files
+    ├── controllers                #=> Controller specs
+    └── models                     #=> Model specs
 ```
 
 ### Template structure and file generation
