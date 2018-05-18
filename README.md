@@ -1,4 +1,3 @@
-[![Dependency Status](https://beta.gemnasium.com/badges/github.com/simplatra/simplatra.svg)](https://beta.gemnasium.com/projects/github.com/simplatra/simplatra)
 [![Release](https://img.shields.io/github/release/simplatra/simplatra.svg)](https://github.com/simplatra/simplatra/releases)
 [![License](https://img.shields.io/github/license/simplatra/simplatra.svg)](https://github.com/simplatra/simplatra/blob/master/LICENSE)
 
