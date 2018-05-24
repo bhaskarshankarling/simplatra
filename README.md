@@ -31,7 +31,6 @@ A simple Model-View-Controller Sinatra template for creating more complete and d
 
 Simplatra has the following features, and uses the following gems and services:
 
-- **Deployment**: Heroku (https://www.heroku.com/)
 - **Web framework/DSL**: Sinatra (http://sinatrarb.com/)
 - **ORM**: *Rails* ActiveRecord (https://github.com/rails/rails/tree/master/activerecord)
 - **ORDBMS (production)**: PostgreSQL (https://www.postgresql.org/)
@@ -312,11 +311,10 @@ Or simply `$ rake`, as `rspec spec` is the default rake task.
 
 ## Demonstration
 
-For an idea of how a small-medium sized Simplatra application should look like, take a look at the following examples:
+For an idea of how a small sized Simplatra application should look like, take a look at the following examples:
 
 - [Official demo application](https://github.com/simplatra/simplatra-demo)
 - [Official Simplatra website](https://github.com/simplatra/simplatra-website)
-- [Edinburgh University Transhumanism Society](https://github.com/eonu/thsoc) (Includes `warden` gem, `Rack::Protection`, user authentication and password encryption with `bcrypt`)
 
 ## Deployment
 

@@ -1,8 +1,7 @@
-require 'rack/test'
-require 'rspec'
-require 'shoulda-matchers'
 require './app'
+Bundler.require :test
 ENV['RACK_ENV'] = 'test'
+
 Shoulda::Matchers.configure do |config|
     config.integrate do |with|
         with.test_framework :rspec
@@ -10,8 +9,9 @@ Shoulda::Matchers.configure do |config|
         with.library :active_model
     end
 end
-RSpec.configure do |c|
-    c.include Rack::Test::Methods
-    c.include(Shoulda::Matchers::ActiveModel, type: :model)
-    c.include(Shoulda::Matchers::ActiveRecord, type: :model)
+
+RSpec.configure do |config|
+    config.include(Rack::Test::Methods)
+    config.include(Shoulda::Matchers::ActiveModel, type: :model)
+    config.include(Shoulda::Matchers::ActiveRecord, type: :model)
 end

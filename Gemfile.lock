@@ -86,6 +86,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  bundler
   hanami-assets
   hanami-helpers
   lumberjack

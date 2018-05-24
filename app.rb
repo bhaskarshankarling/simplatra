@@ -1,26 +1,15 @@
-require 'erb'
-require 'yaml'
-require 'sinatra/base'
-require 'sprockets'
-require 'sass'
-require 'uglifier'
-require 'hanami/helpers'
-require 'hanami/assets'
-require 'hanami/assets/helpers'
-require 'rake'
-require 'sinatra/activerecord'
-require 'sinatra/activerecord/rake'
-require 'active_support'
-require 'active_support/core_ext'
-require 'lumberjack'
-Dir["#{File.dirname(__FILE__)}/config/*.rb"].each{|file|require file}
-Dir["#{File.dirname(__FILE__)}/app/helpers/*.rb"].each{|file|require file}
-Dir["#{File.dirname(__FILE__)}/app/models/*.rb"].each{|file|require file}
-Dir["#{File.dirname(__FILE__)}/app/controllers/*.rb"].each{|file|require file}
+require 'bundler'
+Bundler.require :default
+
+$DIR = File.dirname(__FILE__)
+Dir["#$DIR/config/*.rb"].each{|file|require file}
+Dir["#$DIR/app/helpers/*.rb"].each{|file|require file}
+Dir["#$DIR/app/models/*.rb"].each{|file|require file}
+Dir["#$DIR/app/controllers/*.rb"].each{|file|require file}
 
 class ApplicationController < Sinatra::Base
     # Set views, templates and partials
-    set :views, ->{"#{File.dirname(__FILE__)}/app/views"}
+    set :views, ->{"#$DIR/app/views"}
 
     # Set default ERB template
     set :erb, layout: :'templates/layout'
@@ -44,8 +33,8 @@ class ApplicationController < Sinatra::Base
             end
         end
     end
-    set :app_data, StaticData.new
-    define_method(:data){settings.app_data}
+    set :static, StaticData.new
+    define_method(:data){settings.static}
 
     # Prepare asset pipeline
     set :environment, Sprockets::Environment.new
