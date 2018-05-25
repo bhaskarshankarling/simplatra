@@ -181,7 +181,7 @@ Static site data can be stored in YAML files in the `app/yaml` directory. File e
 
 ##### Example
 
-YAML data can be accessed with the `data` application helper method, followed by calling the dynamically defined method with the same name as the YAML file - so in this case, `data.index`.
+YAML data can be accessed with the `$static` global variable, followed by calling the dynamically defined method with the same name as the YAML file - so in this case, `$static.index`.
 
 ```yaml
 # app/yaml/index.yml
@@ -196,7 +196,7 @@ features:
 <!-- app/views/index.erb -->
 <html>
     <body>
-        <% data.index['features'].each do |feature| %>
+        <% $static.index['features'].each do |feature| %>
         <h1><%= feature %></h1>
         <% end %>
     </body>
