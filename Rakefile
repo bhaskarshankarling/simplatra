@@ -7,7 +7,7 @@ task :default => [:spec]
 
 desc 'Run specs'
 task :spec do
-  sh 'rspec spec'
+  sh 'rspec -fd spec'
 end
 
 desc 'Sets up the application. (parameters: NAME, GITKEEP=true/false)'
