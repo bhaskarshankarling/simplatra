@@ -41,7 +41,6 @@ Simplatra has the following features, and uses the following gems and services:
 - **CSS preprocessing**: SCSS (http://sass-lang.com/)
 - **JS compression**: Uglifier (https://github.com/lautis/uglifier)
 - **Static site data**: YAML (http://yaml.org/)
-- **Continuous integration**: Travis CI (https://travis-ci.org/)
 - **Logging**: Lumberjack (https://github.com/bdurand/lumberjack)
 - **Tests/Specs**:
     - RSpec (http://rspec.info/)
