@@ -80,7 +80,9 @@ The template's directory is currently structured as follows:
 ├── app.rb                         #=> Core application data
 ├── config                         #
 │   ├── database.yml               #=> Database configuration
-│   └── initializers.rb            #=> Initializers file
+│   ├── initializers.rb            #=> Initializers file
+│   ├── manifest.rb                #=> Manifest file accessor configuration
+│   └── static.rb                  #=> Static data accessor configuration
 ├── config.ru                      #=> config.ru for rack instructions
 ├── log                            #=> Log files
 └── spec                           #=> RSpec test files

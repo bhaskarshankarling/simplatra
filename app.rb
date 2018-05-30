@@ -1,15 +1,14 @@
+$dir = File.dirname(__FILE__)
+
 require 'bundler'
 Bundler.require :default
 
-$DIR = File.dirname(__FILE__)
-Dir["#$DIR/config/*.rb"].each{|file|require file}
-Dir["#$DIR/app/helpers/*.rb"].each{|file|require file}
-Dir["#$DIR/app/models/*.rb"].each{|file|require file}
-Dir["#$DIR/app/controllers/*.rb"].each{|file|require file}
+Dir["#$dir/config/*.rb"].each{|file|require file}
+Dir["#$dir/app/{helpers,models,controllers}/*.rb"].each{|file|require file}
 
 class ApplicationController < Sinatra::Base
     # Set views, templates and partials
-    set :views, ->{"#$DIR/app/views"}
+    set :views, "#$dir/app/views"
 
     # Set default ERB template
     set :erb, layout: :'templates/layout'
@@ -17,7 +16,7 @@ class ApplicationController < Sinatra::Base
     # Set logger variables
     %i[test production development].each do |env|
         configure env do
-            set :logger, ->{Lumberjack::Logger.new("log/#{env}.log")}
+            set :logger, Lumberjack::Logger.new("#$dir/log/#{env}.log")
         end
     end
 
@@ -32,19 +31,5 @@ class ApplicationController < Sinatra::Base
     get '/assets/*' do
         env["PATH_INFO"].sub!('/assets','')
         settings.environment.call(env)
-    end
-
-    # Application manifest file accessor method
-    def application(*args)
-        html = String.new
-        css_syms = %i[css stylesheet]
-        js_syms = %i[js javascript]
-        args.map(&:to_sym).each do |arg|
-            html << stylesheet('application') if css_syms.include? arg
-            html << javascript('application') if js_syms.include? arg
-        end
-        html
-    rescue
-        raise ArgumentError.new("Expected arguments to be any of: #{css_syms+js_syms}")
     end
 end

@@ -19,8 +19,10 @@ gem 'sass'
 gem 'uglifier'
 
 # Hanami HTML/asset helpers
-gem 'hanami-helpers', require: 'hanami/helpers'
-gem 'hanami-assets', require: ['hanami/assets','hanami/assets/helpers']
+group :hanami do
+    gem 'hanami-helpers', require: 'hanami/helpers'
+    gem 'hanami-assets', require: ['hanami/assets','hanami/assets/helpers']
+end
 
 # ActiveRecord for models and records
 gem 'activerecord', require: ['active_support','active_support/core_ext']
@@ -29,13 +31,13 @@ gem 'sinatra-activerecord', require: ['sinatra/activerecord','sinatra/activereco
 # Logging
 gem 'lumberjack'
 
-group :development, :test do
-    gem 'sqlite3'
+# Database adapters
+gem 'sqlite3', group: [:development, :test]
+gem 'pg', group: :production
+
+# Test environment
+group :test do
     gem 'rack-test', require: 'rack/test'
     gem 'rspec'
     gem 'shoulda-matchers'
-end
-
-group :production do
-    gem 'pg'
 end
