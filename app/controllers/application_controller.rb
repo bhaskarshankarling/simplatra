@@ -1,3 +1,4 @@
+Bundler.require :hanami
 class ApplicationController < Sinatra::Base
     helpers ApplicationHelper, Hanami::Helpers, Hanami::Assets::Helpers
 
