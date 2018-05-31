@@ -1,7 +1,4 @@
-require 'sinatra/activerecord'
-require 'sinatra/activerecord/rake'
-require 'active_support/core_ext'
-require './app.rb'
+require './app'
 
 task :default => [:spec]
 
