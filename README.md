@@ -9,7 +9,7 @@ A simple Model-View-Controller Sinatra template for creating more complete and d
 
 ---
 
-The template's directory is currently structured as follows:
+The template's directory is currently structured as follows (displaying important files):
 
 ```ruby
 .
@@ -36,9 +36,7 @@ The template's directory is currently structured as follows:
 ├── app.rb                         #=> Core application data
 ├── config                         #
 │   ├── database.yml               #=> Database configuration
-│   ├── initializers.rb            #=> Initializers file
-│   ├── manifest.rb                #=> Manifest file accessor configuration
-│   └── static.rb                  #=> Static data accessor configuration
+│   └── initializers.rb            #=> Initializers file
 ├── config.ru                      #=> config.ru for rack instructions
 ├── log                            #=> Log files
 └── spec                           #=> RSpec test files
