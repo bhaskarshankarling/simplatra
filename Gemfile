@@ -10,6 +10,9 @@ gem 'bundler'
 # Rake for application setup, file generation tasks and migrations
 gem 'rake'
 
+# For colorized rake messages
+gem 'colorize'
+
 # Sinatra
 gem 'sinatra', require: 'sinatra/base'
 

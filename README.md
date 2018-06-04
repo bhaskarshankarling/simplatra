@@ -36,7 +36,8 @@ The template's directory is currently structured as follows (displaying importan
 ├── app.rb                         #=> Core application data
 ├── config                         #
 │   ├── database.yml               #=> Database configuration
-│   └── initializers.rb            #=> Initializers file
+│   ├── root.rb                    #=> Application root constant
+│   └── initializers               #=> Initializers file
 ├── config.ru                      #=> config.ru for rack instructions
 ├── log                            #=> Log files
 └── spec                           #=> RSpec test files
