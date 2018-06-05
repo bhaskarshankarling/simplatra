@@ -13,6 +13,9 @@ gem 'rake'
 # For colorized rake messages
 gem 'colorize'
 
+# For constructing strings
+gem 'string_builder'
+
 # Sinatra
 gem 'sinatra', require: 'sinatra/base'
 
@@ -33,6 +36,12 @@ gem 'sinatra-activerecord', require: ['sinatra/activerecord','sinatra/activereco
 
 # Logging
 gem 'lumberjack'
+
+# Blogging environment
+group :blog do
+    gem 'front_matter_parser'
+    gem 'rdiscount'
+end
 
 # Database adapters
 gem 'sqlite3', group: [:development, :test]
