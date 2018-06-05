@@ -3,7 +3,7 @@
 
 # Simplatra
 
-A simple Model-View-Controller Sinatra template for creating more complete and dynamic web applications. Bundled with an asset pipeline, view helpers, stylesheet preprocessing, ActiveRecord and easy management of static data.
+A simple MVC Sinatra template for creating dynamic web applications. Bundled with asset pipeline/preprocessing, view helpers, easy management of static data and options for blog-aware development.
 
 ### [View the GitBook for documentation of the template](https://simplatra.gitbook.io/simplatra/)
 
@@ -17,6 +17,7 @@ The template's directory is currently structured as follows (displaying importan
 ├── LICENSE                        #=> MIT licensing
 ├── Procfile                       #=> Process types for Heroku deployment
 ├── Rakefile                       #=> Rakefile for task automation
+├── rake                           #=> .rake files
 ├── app                            #
 │   ├── assets                     #=> Assets for pipelining
 │   │   ├── fonts                  #
