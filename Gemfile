@@ -14,7 +14,7 @@ gem 'rake'
 gem 'colorize'
 
 # For constructing strings
-gem 'string_builder'
+gem 'string-builder', require: 'string/builder'
 
 # Sinatra
 gem 'sinatra', require: 'sinatra/base'
