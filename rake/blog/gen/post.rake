@@ -2,7 +2,7 @@ namespace :blog do
     namespace :gen do
         using String::Builder
 
-        desc 'Creates a new post (parameters: URLTITLE, HEADER)'
+        desc 'Creates a new post (parameters: URLTITLE)'
         task :post do
             unless ENV.has_key? 'URLTITLE'
                 message = "\n#{"ERR".colorize(:light_red)} » Post urltitle must be specified e.g. rake blog:post:gen URLTITLE=simplatra-blog-aware"
@@ -31,12 +31,6 @@ namespace :blog do
             sh "mkdir #{asset_base}/#{y}/#{m}/#{d}" unless File.directory? "#{asset_base}/#{y}/#{m}/#{d}"
 
             sh "mkdir #{asset_path}" unless File.directory? asset_path
-
-            header = ENV['HEADER']
-            unless (header == nil) || (header.downcase == 'false')
-                header_file = (header.downcase == 'true') ? 'header' : header
-                sh "touch #{asset_path}/#{header_file}.png"
-            end
 
             # Markdown file and path generation
             post_base = String.build Simplatra::ROOT do |s|
