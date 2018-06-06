@@ -73,6 +73,10 @@ namespace :blog do
                             end
                             get "/#{route}/search/:query", &query
                             post "/#{route}/search/:query", &query
+
+                            get %r{/#{route}/.*} do
+                                redirect '/#{route}'
+                            end
                         end
                     EOF
                 end
