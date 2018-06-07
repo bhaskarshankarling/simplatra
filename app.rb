@@ -7,7 +7,10 @@ Dir["#{Simplatra::ROOT}/config/initializers/*.rb"].each{|file|require file}
 Dir["#{Simplatra::ROOT}/app/{helpers,models,controllers}/*.rb"].each{|file|require file}
 
 class ApplicationController < Sinatra::Base
-    # Set views, templates and partials
+    # Set server
+    set :server, 'thin'
+
+    # Set views, templates and partials directory
     set :views, "#{Simplatra::ROOT}/app/views"
 
     # Set default ERB template
