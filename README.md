@@ -1,5 +1,7 @@
+[![Ruby Version](https://img.shields.io/badge/ruby-~%3E_2.5.0-red.svg)]()
 [![Release](https://img.shields.io/github/release/simplatra/simplatra.svg)](https://github.com/simplatra/simplatra/releases)
 [![License](https://img.shields.io/github/license/simplatra/simplatra.svg)](https://github.com/simplatra/simplatra/blob/master/LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-gitbook-blue.svg)](https://simplatra.gitbook.io/simplatra)
 
 # Simplatra
 
