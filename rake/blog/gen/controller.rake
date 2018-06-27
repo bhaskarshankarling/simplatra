@@ -3,7 +3,7 @@ namespace :blog do
 
         desc 'Creates a blog controller (parameters: ROUTE)'
         task :controller do
-            # Array.sort_by_date monkey-patch
+            # Array#sort_by_date! refinement
             initializer_file = "#{Simplatra::ROOT}/config/initializers/sort_by_date.rb"
             if File.exist? initializer_file
                 puts "\n#{"ERR".colorize(:light_red)} » Initializer file '#{initializer_file}' already exists."
@@ -12,12 +12,12 @@ namespace :blog do
                     f.write(<<-EOF.strip_heredoc)
                         module Array::DateSort
                             refine Array do
-                                def sort_by_date(order: :descending)
-                                    obj = self.map!{|x|x['datetime'] = Date.strptime(x['time'], "%Y-%m-%d %H:%M:%S"); x}
+                                def sort_by_date!(order: :descending)
+                                    obj = self.map!{|x|x[:datetime] = Date.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
                                     if order == :descending
-                                        obj.sort!{|x1, x2| x2['datetime'] <=> x1['datetime']}
+                                        obj.sort!{|x1, x2| x2[:datetime] <=> x1[:datetime]}
                                     elsif order == :ascending
-                                        obj.sort!{|x1, x2| x1['datetime'] <=> x2['datetime']}
+                                        obj.sort!{|x1, x2| x1[:datetime] <=> x2[:datetime]}
                                     end
                                 end
                             end
@@ -47,16 +47,16 @@ namespace :blog do
                             FILES = Dir.glob("\#{Simplatra::ROOT}/app/views/posts/**/*.md")
 
                             get "/#{route}" do
-                                @posts = FILES.map{|md|FrontMatterParser::Parser.parse_file(md).front_matter}
-                                @posts.sort_by_date(order: :descending)
+                                @posts = FILES.map{|md|FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys}
+                                @posts.sort_by_date!(order: :descending)
                                 erb :blog
                             end
 
                             FILES.each do |md|
                                 parsed = FrontMatterParser::Parser.parse_file(md)
-                                yaml = {front_matter: parsed.front_matter, content: parsed.content}
-                                subpath = yaml[:front_matter]['time'].split(' ').first.gsub(?-,?/)
-                                get "/#{route}/\#{subpath}/\#{yaml[:front_matter]['urltitle']}" do
+                                yaml = {front_matter: parsed.front_matter.symbolize_keys, content: parsed.content}
+                                subpath = yaml[:front_matter][:time].split(' ').first.gsub(?-,?/)
+                                get "/#{route}/\#{subpath}/\#{yaml[:front_matter][:urltitle]}" do
                                     @front_matter = yaml[:front_matter]
                                     erb :'templates/post', locals: {content: markdown(yaml[:content])}, layout: false
                                 end
@@ -66,9 +66,9 @@ namespace :blog do
                                 @query = params[:query]
                                 redirect "/#{route}" unless @query.match /^[a-zA-Z]+[a-zA-Z0-9\\-_.]*[a-zA-Z0-9]$/
                                 @posts = FILES.map{|md|
-                                    FrontMatterParser::Parser.parse_file(md).front_matter
-                                }.select{|post| post['tags'].any?{|tag| tag.include?(@query)}}
-                                @posts.sort_by_date(order: :descending)
+                                    FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys
+                                }.select{|post| post[:tags].any?{|tag| tag.include?(@query)}}
+                                @posts.sort_by_date!(order: :descending)
                                 erb :blog_search
                             end
                             get "/#{route}/search/:query", &query
@@ -98,7 +98,7 @@ namespace :blog do
                             def app() BlogController end
 
                             POSTS = Dir.glob("\#{Simplatra::ROOT}/app/views/posts/**/*.md").map do |md|
-                                FrontMatterParser::Parser.parse_file(md).front_matter
+                                FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys
                             end
 
                             describe 'blog page' do
@@ -110,22 +110,22 @@ namespace :blog do
 
                             POSTS.each do |post|
                                 # Implement these tests!
-                                describe "Post: \#{post['title']}" do
+                                describe "Post: \#{post[:title]}" do
                                     it "should have a timestamp" do
-                                        get "/#{route}/\#{post['urltitle']}"
+                                        get "/#{route}/\#{post[:urltitle]}"
                                         expect(true).to eq(false)
                                     end
                                     it "should have a title" do
-                                        get "/#{route}/\#{post['urltitle']}"
+                                        get "/#{route}/\#{post[:urltitle]}"
                                         expect(true).to eq(false)
                                     end
                                     it "should have a description" do
-                                        get "/#{route}/\#{post['urltitle']}"
+                                        get "/#{route}/\#{post[:urltitle]}"
                                         expect(true).to eq(false)
                                     end
                                     it "should have tags" do
-                                        get "/#{route}/\#{post['urltitle']}"
-                                        post['tags'].each do |tag|
+                                        get "/#{route}/\#{post[:urltitle]}"
+                                        post[:tags].each do |tag|
                                             expect(true).to eq(false)
                                         end
                                     end
