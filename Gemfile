@@ -6,6 +6,11 @@ gem 'bundler'
 gem 'thin'
 gem 'rake'
 
+# CLI and rake replacement
+group :thor do
+    gem 'thor', require: ['thor','thor/group']
+end
+
 # Database adapters
 gem 'sqlite3', group: [:development, :test]
 gem 'pg', group: :production

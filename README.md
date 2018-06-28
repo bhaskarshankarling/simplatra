@@ -11,15 +11,16 @@ A simple MVC Sinatra template for creating dynamic web applications. Bundled wit
 
 ---
 
-The template's directory is currently structured as follows (displaying important files):
+The template's directory is currently structured as follows (not all files are shown):
 
 ```ruby
 .
 ├── Gemfile                        #=> Gemfile for dependencies and versions
 ├── LICENSE                        #=> MIT licensing
 ├── Procfile                       #=> Process types for Heroku deployment
-├── Rakefile                       #=> Rakefile for task automation
-├── rake                           #=> .rake files
+├── Rakefile                       #
+├── bin                            #=> Simplatra CLI
+├── thor                           #=> Thor tasks for Simplatra CLI
 ├── app                            #
 │   ├── assets                     #=> Assets for pipelining
 │   │   ├── fonts                  #
@@ -38,8 +39,6 @@ The template's directory is currently structured as follows (displaying importan
 │   └── yaml                       #=> Static site data
 ├── app.rb                         #=> Core application data
 ├── config                         #
-│   ├── database.yml               #=> Database configuration
-│   ├── root.rb                    #=> Application root constant
 │   └── initializers               #=> Initializers file
 ├── config.ru                      #=> config.ru for rack instructions
 ├── log                            #=> Log files

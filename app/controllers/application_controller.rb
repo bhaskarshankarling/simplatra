@@ -15,8 +15,4 @@ class ApplicationController < Sinatra::Base
     get '/404' do
         redirect '/'
     end
-
-    # Add your other routes here...
-    # Or generate another controller for other routes:
-    # `rake generate:controller NAME=ControllerName`
 end
