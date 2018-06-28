@@ -1,7 +1,8 @@
 require 'bundler'
-Bundler.require :default
+Bundler.require :default, :thor
 require_relative 'config/root'
 
+Dir["#{Simplatra::ROOT}/thor/**/*.rb"].each{|file|require file}
 Dir["#{Simplatra::ROOT}/config/*.rb"].each{|file|require file}
 Dir["#{Simplatra::ROOT}/config/initializers/*.rb"].each{|file|require file}
 Dir["#{Simplatra::ROOT}/app/{helpers,models,controllers}/*.rb"].each{|file|require file}

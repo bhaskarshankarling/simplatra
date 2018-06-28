@@ -1,3 +1,7 @@
 require './app'
-Dir.glob("#{Simplatra::ROOT}/rake/**/*.rake").each{|r|load r}
+require 'rspec/core/rake_task'
+
 task :default => [:spec]
+
+desc "Run the specs"
+RSpec::Core::RakeTask.new(:spec)

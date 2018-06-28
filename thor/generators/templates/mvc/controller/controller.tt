@@ -1,0 +1,3 @@
+class <%= config[:class_name] %> < Simplatra::Controller(route: '<%= config[:route] %>')
+    helpers <%= config[:class_name].gsub 'Controller', 'Helper' %>
+end

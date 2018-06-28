@@ -1,6 +1,8 @@
 require './app'
-Dir["#{Simplatra::ROOT}/app/controllers/*.rb"]
-    .map{|f|File.basename(f,'.*').camelize}
-    .reject(&'ApplicationController'.method(:==))
-    .each{|c|use c.constantize}
-run ApplicationController
+Dir["#{Simplatra::ROOT}/app/controllers/*.rb"].each do |file|
+    controller = File.basename(file,'.*').camelize
+    next if controller == 'ApplicationController'
+    constant = controller.constantize
+    map(constant.router) {run constant}
+end
+map('/') {run ApplicationController}

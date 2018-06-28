@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './config/root'
+Dir["#{Simplatra::ROOT}/thor/**/*.rb"].each{|file|require file}
+Simplatra::CLI.start
