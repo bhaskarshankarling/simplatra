@@ -3,6 +3,7 @@ describe <%= config[:class_name] %> do
     def app() <%= config[:class_name] %> end
 
     it "should expect true to be true" do
+        get '/'
         expect(true).to be true
     end
 

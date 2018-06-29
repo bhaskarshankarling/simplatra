@@ -1,8 +1,9 @@
+class ApplicationController < Sinatra::Base; end
 module Simplatra
     def self.Controller(route:)
         name = File.basename(caller[0][/[^:]+/],'.*').camelize
-        Object.const_set(name,Class.new(ApplicationController))
+        Object.const_set(name,Class.new(::ApplicationController))
         name.constantize.instance_eval(%{def router() "#{route}" end})
-        ApplicationController
+        ::ApplicationController
     end
 end

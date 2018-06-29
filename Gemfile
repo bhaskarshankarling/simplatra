@@ -20,7 +20,7 @@ gem 'activerecord', require: ['active_support','active_support/core_ext']
 gem 'sinatra-activerecord', require: ['sinatra/activerecord','sinatra/activerecord/rake']
 
 # Test environment
-group :test do
+group :test, :production do
     gem 'rack-test', require: 'rack/test'
     gem 'rspec'
     gem 'shoulda-matchers'
