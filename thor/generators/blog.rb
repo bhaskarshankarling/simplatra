@@ -59,7 +59,7 @@ module Simplatra
                 route = route[0] == ?/ ? route : "/#{route}"
                 config = {route: route}
                 template("#{TEMPLATES}/blog/controller.tt", "#{Simplatra::ROOT}/app/controllers/blog_controller.rb", config)
-                template("#{TEMPLATES}/blog/spec.tt", "#{Simplatra::ROOT}/spec/controllers/blog_controller_spec.rb", config)
+                template("#{TEMPLATES}/blog/spec.tt", "#{Simplatra::ROOT}/spec/controllers/blog_controller_spec.rb")
             end
 
             def list

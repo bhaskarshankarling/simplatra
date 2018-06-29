@@ -9,6 +9,7 @@ describe BlogController do
 
     describe 'blog page' do
         # Implement this test!
+        get '/'
         it "should display all posts" do
             expect(true).to eq(false)
         end
@@ -16,21 +17,22 @@ describe BlogController do
 
     POSTS.each do |post|
         # Implement these tests!
+        subpath = post[:time].split(' ').first.gsub(?-,?/)
         describe "Post: #{post[:title]}" do
             it "should have a timestamp" do
-                get "<%= config[:route] %>/#{post[:urltitle]}"
+                get "/#{subpath}/#{post[:urltitle]}"
                 expect(true).to eq(false)
             end
             it "should have a title" do
-                get "<%= config[:route] %>/#{post[:urltitle]}"
+                get "/#{subpath}/#{post[:urltitle]}"
                 expect(true).to eq(false)
             end
             it "should have a description" do
-                get "<%= config[:route] %>/#{post[:urltitle]}"
+                get "/#{subpath}/#{post[:urltitle]}"
                 expect(true).to eq(false)
             end
             it "should have tags" do
-                get "<%= config[:route] %>/#{post[:urltitle]}"
+                get "/#{subpath}/#{post[:urltitle]}"
                 post[:tags].each do |tag|
                     expect(true).to eq(false)
                 end
