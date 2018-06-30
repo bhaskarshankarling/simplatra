@@ -6,9 +6,9 @@ Bundler.require :thor
 
 module Simplatra
     class Blog < Thor
-        desc "post [URLTITLE]", "Generates a blog post"
-        def post(urltitle)
-            Simplatra::Generators::Blog.new.post(urltitle: urltitle)
+        desc "article [URLTITLE]", "Generates a blog article"
+        def article(urltitle)
+            Simplatra::Generators::Blog.new.article(urltitle: urltitle)
         end
 
         desc "setup [ROUTE]", "Sets up the blogging environment (controller, spec and helper)"
@@ -19,7 +19,7 @@ module Simplatra
             generator.views
         end
 
-        desc "list", "Pretty-print the metadata of all blog posts"
+        desc "list", "Pretty-print the metadata of all blog articles"
         def list
             Simplatra::Generators::Blog.new.list
         end
@@ -30,6 +30,6 @@ module Simplatra
     end
 
     class CLI < Thor
-        register(Blog, 'blog', 'blog [COMMAND]', 'Configure blog environment and generate posts')
+        register(Blog, 'blog', 'blog [COMMAND]', 'Configure blog environment and generate articles')
     end
 end

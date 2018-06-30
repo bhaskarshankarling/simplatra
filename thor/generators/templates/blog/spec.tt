@@ -3,36 +3,34 @@ require 'front_matter_parser'
 describe BlogController do
     def app() BlogController end
 
-    POSTS = Dir.glob("#{Simplatra::ROOT}/app/views/posts/**/*.md").map do |md|
+    ARTICLES = Dir.glob("#{Simplatra::ROOT}/app/views/blog/markdown/**/*.md").map do |md|
         FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys
     end
 
     describe 'blog page' do
         # Implement this test!
-        get '/'
         it "should display all posts" do
             expect(true).to eq(false)
         end
     end
 
-    POSTS.each do |post|
+    ARTICLES.each do |post|
         # Implement these tests!
-        subpath = post[:time].split(' ').first.gsub(?-,?/)
         describe "Post: #{post[:title]}" do
             it "should have a timestamp" do
-                get "/#{subpath}/#{post[:urltitle]}"
+                get "<%= config[:route] %>/#{post[:urltitle]}"
                 expect(true).to eq(false)
             end
             it "should have a title" do
-                get "/#{subpath}/#{post[:urltitle]}"
+                get "<%= config[:route] %>/#{post[:urltitle]}"
                 expect(true).to eq(false)
             end
             it "should have a description" do
-                get "/#{subpath}/#{post[:urltitle]}"
+                get "<%= config[:route] %>/#{post[:urltitle]}"
                 expect(true).to eq(false)
             end
             it "should have tags" do
-                get "/#{subpath}/#{post[:urltitle]}"
+                get "<%= config[:route] %>/#{post[:urltitle]}"
                 post[:tags].each do |tag|
                     expect(true).to eq(false)
                 end
