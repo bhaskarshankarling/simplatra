@@ -1,21 +1,26 @@
 require 'bundler'
-Bundler.require :default, :thor
+Bundler.require :default
 require_relative 'config/root'
 
-Dir["#{Simplatra::ROOT}/thor/**/*.rb"].each{|file|require file}
 Dir["#{Simplatra::ROOT}/config/*.rb"].each{|file|require file}
 Dir["#{Simplatra::ROOT}/config/initializers/*.rb"].each{|file|require file}
 Dir["#{Simplatra::ROOT}/app/{helpers,models,controllers}/*.rb"].each{|file|require file}
 
 class ApplicationController < Sinatra::Base
     # Set server
-    set :server, 'thin'
+    set :server, %w[thin webrick]
 
-    # Set views, templates and partials directory
+    # Set core application file
+    set :app_file, __FILE__
+
+    # Set application root directory
+    set :root, Simplatra::ROOT
+
+    # Set views directory
     set :views, "#{Simplatra::ROOT}/app/views"
 
     # Set default ERB template
-    set :erb, layout: :'templates/layout'
+    set :erb, layout: :'layouts/main'
 
     # Set logger variables
     %i[test production development].each do |env|

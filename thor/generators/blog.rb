@@ -17,13 +17,13 @@ module Simplatra
 
             def self.source_root() TEMPLATES end
 
-            def post(urltitle:)
+            def article(urltitle:)
                 dt = Hash.new
                 dt[:full] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
                 dt[:date] = dt[:full].split(' ').first
 
                 # Assets path generation
-                asset_base = "#{Simplatra::ROOT}/app/assets/images/posts"
+                asset_base = "#{Simplatra::ROOT}/app/assets/images/blog"
                 asset_path = asset_base.build do |s|
                     s << "/#{dt[:date].gsub(?-,?/)}"
                     s << "/#{urltitle}"
@@ -32,23 +32,27 @@ module Simplatra
                 empty_directory(asset_path)
 
                 # Markdown file and path generation
-                post_base = "#{Simplatra::ROOT}/app/views/posts"
-                post_path = String.build post_base do |s|
+                article_base = "#{Simplatra::ROOT}/app/views/blog/markdown"
+                article_path = article_base.build do |s|
                     s << "/#{dt[:date].gsub(?-,?/)}"
                     s << "/#{urltitle}.md"
                 end
 
                 config = {datetime: dt[:full], date: dt[:date], urltitle: urltitle}
-
-                template("#{TEMPLATES}/blog/post.tt", post_path, config)
+                template("#{TEMPLATES}/blog/article_md.tt", article_path, config)
             end
 
             def views
-                config = {erb: ["<%= application :css, :js %>","<%= content %>"]}
-                template("#{TEMPLATES}/blog/post.erb", "#{Simplatra::ROOT}/app/views/templates/post.erb", config)
-                config = {erb: "<%= @posts %>"}
-                template("#{TEMPLATES}/blog/blog.erb", "#{Simplatra::ROOT}/app/views/blog.erb", config)
-                template("#{TEMPLATES}/blog/blog_search.erb", "#{Simplatra::ROOT}/app/views/blog_search.erb", config)
+                config = {erb: ["<%= application :css, :js %>","<%= yield %>"]}
+                template("#{TEMPLATES}/blog/article_layout.erb", "#{Simplatra::ROOT}/app/views/layouts/blog/article.erb", config)
+                template("#{TEMPLATES}/blog/articles_layout.erb", "#{Simplatra::ROOT}/app/views/layouts/blog/articles.erb", config)
+
+                config = {erb: "<%= content %>"}
+                template("#{TEMPLATES}/blog/article.erb", "#{Simplatra::ROOT}/app/views/blog/article.erb", config)
+
+                config = {erb: "<%= @articles %>"}
+                template("#{TEMPLATES}/blog/articles.erb", "#{Simplatra::ROOT}/app/views/blog/articles.erb", config)
+                template("#{TEMPLATES}/blog/search.erb", "#{Simplatra::ROOT}/app/views/blog/search.erb", config)
             end
 
             def helper
@@ -57,22 +61,23 @@ module Simplatra
 
             def controller(route:)
                 route = route[0] == ?/ ? route : "/#{route}"
+
                 config = {route: route}
                 template("#{TEMPLATES}/blog/controller.tt", "#{Simplatra::ROOT}/app/controllers/blog_controller.rb", config)
-                template("#{TEMPLATES}/blog/spec.tt", "#{Simplatra::ROOT}/spec/controllers/blog_controller_spec.rb")
+                template("#{TEMPLATES}/blog/spec.tt", "#{Simplatra::ROOT}/spec/controllers/blog_controller_spec.rb", config)
             end
 
             def list
                 chars = {corner: ?+, vertical: ?║, horizontal: ?═}
 
-                files = Dir.glob("#{Simplatra::ROOT}/app/views/posts/**/*.md")
+                files = Dir.glob("#{Simplatra::ROOT}/app/views/blog/markdown/**/*.md")
                 return if files.empty?
 
                 metadata = files.map{|md|FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys}
 
                 longest = 0
-                metadata.each do |post|
-                    post.each do |k,v|
+                metadata.each do |article|
+                    article.each do |k,v|
                         next if k == :desc
                         str = "#{k}: #{v}"
                         longest = str.length if longest < str.length
@@ -81,8 +86,8 @@ module Simplatra
 
                 output = String.build "\n" do |s|
                     s << (chars[:corner]+chars[:horizontal]*(longest+2)+chars[:corner]+"\n")
-                    metadata.each do |post|
-                        post.each do |k,v|
+                    metadata.each do |article|
+                        article.each do |k,v|
                             str = "#{k}: #{v}"
                             if k == :desc
                                 value = v.to_s

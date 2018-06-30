@@ -5,5 +5,5 @@ tags: ["TODO"]
 # Changing `urltitle` or `time` will require changes to the asset and view directory structures, as well as the asset path below.
 urltitle: "<%= config[:urltitle] %>"
 time: "<%= config[:datetime] %>"
-assetpath: "/assets/posts/<%= config[:date].gsub(?-,?/) %>/<%= config[:urltitle] %>/"
+assetpath: "/assets/blog/<%= config[:date].gsub(?-,?/) %>/<%= config[:urltitle] %>/"
 ---
