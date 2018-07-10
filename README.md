@@ -37,7 +37,7 @@ The template's directory is currently structured as follows (not all files are s
 │   │   ├── partials               #
 │   │   └── templates              #
 │   └── yaml                       #=> Static site data
-├── app.rb                         #=> Core application data
+├── app.rb                         #=> Core application file
 ├── config                         #
 │   └── initializers               #=> Initializers file
 ├── config.ru                      #=> config.ru for rack instructions
