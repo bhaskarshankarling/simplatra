@@ -94,7 +94,7 @@ module Simplatra
                             end
                             len = str.ljust(longest,' ').length-str.length
                             s << "#{chars[:vertical]} "
-                            s << "#{k.to_s.colorize(:magenta)}: #{str[(k.to_s.length+2)..-1]}"
+                            s << "\e[95m#{k.to_s}\e[0m: #{str[(k.to_s.length+2)..-1]}"
                             s << ' '*len
                             s << " #{chars[:vertical]}\n"
                         end

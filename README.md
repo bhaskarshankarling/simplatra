@@ -9,10 +9,26 @@ A simple MVC Sinatra template for creating dynamic web applications. Bundled wit
 
 ## Installation
 
+To install the CLI, run:
+
 ```bash
 $ gem install simplatra
 ```
 
 ## Usage
 
-### [View the GitBook for documentation of the template](https://simplatra.gitbook.io/simplatra/)
+Initialize a new application with:
+
+```bash
+$ simplatra init my-new-app
+```
+
+Move into your new application's directory and run:
+
+```bash
+$ bundle install
+```
+
+And you're ready to go!
+
+### [View the GitBook for full documentation of the template](https://simplatra.gitbook.io/simplatra/)

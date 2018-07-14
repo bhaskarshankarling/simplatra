@@ -2,17 +2,15 @@ Bundler.require :hanami
 class ApplicationController < Sinatra::Base
     helpers ApplicationHelper, Hanami::Helpers, Hanami::Assets::Helpers
 
-    %w[/ /index /home].each do |path|
-        get path do
-            erb :index
-        end
+    get '/' do
+        erb :index
     end
 
-    %w[/404 /lost].each do |path|
-        get path do
-            erb :lost
-        end
+    get '/404' do
+        erb :lost
     end
 
-    error(Sinatra::NotFound){redirect '/404'}
+    error Sinatra::NotFound do
+        redirect '/404'
+    end
 end
