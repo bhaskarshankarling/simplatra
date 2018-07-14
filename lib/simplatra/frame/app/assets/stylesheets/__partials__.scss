@@ -8,11 +8,9 @@
  * @import '__partials__'                                                                          *
  *                                                                                                 *
  * You'll have to manually add any new partial files to the list below, unless you decide to use   *
- * the `sass-globbing` gem. This has not been included by default due to incompatibility issues    *
- * primarily with Windows. The gem also can only import globbed files by alphabetical order, which *
- * may not always lead to the desired outcome with CSS, since order matters.                       *
+ * the `sass-globbing` gem.                                                                        *
+ *                                                                                                 *
+ * This gem has not been included by default due to the gem only importing globbed files in        *
+ * alphabetical order, which won't always lead to the desired outcome in CSS, since order matters. *
  * ----------------------------------------------------------------------------------------------- */
-@import 'partials/breakpoints';
-@import 'partials/colors';
-@import 'partials/fonts';
 @import 'partials/mixins';
