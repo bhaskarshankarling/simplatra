@@ -1,5 +1,4 @@
 require_relative 'error'
-require 'colorize'
 require 'thor'
 
 module Simplatra
@@ -9,11 +8,11 @@ module Simplatra
     def init(name)
       current_directory = File.expand_path ?.
       if Dir.exist? File.join(current_directory, name)
-        puts "#{"ERROR".colorize(:light_red).colorize(mode: :bold)}: Directory #{name.colorize(mode: :bold)} already exists."
+        puts "\e[1;91mERROR\e[0m: Directory \e[1m#{name}\e[0m already exists."
         return
       end
       if Dir.exist? File.join(current_directory, 'frame')
-        puts "#{"ERROR".colorize(:light_red).colorize(mode: :bold)}: Directory #{'frame'.colorize(mode: :bold)} already exists."
+        puts "\e[1;91mERROR\e[0m: Directory \e[1mframe\e[0m already exists."
         return
       else
         Simplatra::CLI.source_root(File.dirname(File.dirname(__FILE__)))
@@ -25,15 +24,15 @@ module Simplatra
     desc "serve [ENV]", "Serves your application"
     def serve(env = ENV['RACK_ENV']||'development')
       unless %w[production development test].include? env
-        puts "#{"ERROR".colorize(:light_red).colorize(mode: :bold)}: Invalid Rack environment #{env.colorize(mode: :bold)}."
+        puts "\e[1;91mERROR\e[0m: Invalid Rack environment \e[1m#{env}\e[0m."
         return
       end
 
       directory = File.expand_path ?.
       if File.exist? File.join(directory, '.simplatra')
         cmd = "bundle exec rackup -p #{options[:port]||9292}"
-        puts "Running command: #{cmd.colorize(mode: :bold)}"
-        puts "Rack environment: #{env.colorize(mode: :bold)}"
+        puts "Running command: \e[1m#{cmd}\e[0m"
+        puts "Rack environment: \e[1m#{env}\e[0m"
         exec "env RACK_ENV=#{env} #{cmd}"
       else
         Simplatra::Error.wrong_directory
