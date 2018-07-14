@@ -11,9 +11,9 @@ module Simplatra
       directory = File.expand_path ?.
       if File.exist? File.join(directory, '.simplatra')
         cmd = if options[:rerun]
-          "rerun --quiet bundle exec thin start -p #{port}"
+          "rerun --quiet bundle exec rackup -p #{port}"
         else
-          "bundle exec thin start -p #{port}"
+          "bundle exec rackup -p #{port}"
         end
         puts "#{"RUN".colorize(:green).colorize(mode: :bold)}: #{cmd}"
         exec cmd
