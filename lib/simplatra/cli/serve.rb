@@ -4,17 +4,11 @@ require 'colorize'
 
 module Simplatra
   class CLI < Thor
-    method_options :rerun => false
-    map %w[--rerun] => :rerun
     desc "serve [PORT]", "Serves your application."
     def serve(port = 9292)
       directory = File.expand_path ?.
       if File.exist? File.join(directory, '.simplatra')
-        cmd = if options[:rerun]
-          "rerun --quiet bundle exec rackup -p #{port}"
-        else
-          "bundle exec rackup -p #{port}"
-        end
+        cmd = "bundle exec rackup -p #{port}"
         puts "#{"RUN".colorize(:green).colorize(mode: :bold)}: #{cmd}"
         exec cmd
       else
