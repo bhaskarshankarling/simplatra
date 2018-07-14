@@ -16,7 +16,7 @@ module Simplatra
           "bundle exec thin start -p #{port}"
         end
         puts "#{"RUN".colorize(:green).colorize(mode: :bold)}: #{cmd}"
-        %x{#{cmd}}
+        exec cmd
       else
         Simplatra::Error.wrong_directory
       end
