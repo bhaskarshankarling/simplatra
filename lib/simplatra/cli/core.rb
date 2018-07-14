@@ -21,8 +21,7 @@ module Simplatra
       end
     end
 
-    method_option :serve , :aliases => ?s
-    method_option :port, type: :numeric, aliases: '--port'
+    method_option :port, type: :numeric, aliases: '-p'
     desc "serve [ENV]", "Serves your application"
     def serve(env = ENV['RACK_ENV']||'development')
       unless %w[production development test].include? env
@@ -33,8 +32,7 @@ module Simplatra
       directory = File.expand_path ?.
       if File.exist? File.join(directory, '.simplatra')
         cmd = "bundle exec rackup -p #{options[:port]||9292}"
-        puts "#{"INFO".colorize(:cyan).colorize(mode: :bold)}:"
-        puts "Running command: #{cmd}"
+        puts "Running command: #{cmd.colorize(mode: :bold)}"
         puts "Rack environment: #{env.colorize(mode: :bold)}"
         exec "env RACK_ENV=#{env} #{cmd}"
       else
