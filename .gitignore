@@ -1,15 +1,8 @@
-# Logs, databases and sensitive files
-*.log
-*.sql
-*.sqlite
-*.sqlite3
-*.dump
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/

@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
 
-require './config/root'
-Dir["#{Simplatra::ROOT}/thor/**/*.rb"].each{|file|require file}
+Dir[File.join(File.dirname(File.dirname(__FILE__)),'lib','simplatra/cli/*.rb')].each{|file|require file}
 Simplatra::CLI.start
