@@ -66,7 +66,7 @@ module Simplatra
             def list
                 chars = {corner: ?+, vertical: ?║, horizontal: ?═}
 
-                files = Dir.glob("#@directory/app/views/blog/markdown/**/*.md")
+                files = Dir.glob(File.join(self.destination_root,"app/views/blog/markdown/**/*.md"))
                 return if files.empty?
 
                 metadata = files.map{|md|FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys}
