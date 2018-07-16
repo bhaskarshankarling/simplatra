@@ -2,6 +2,7 @@
 [![License](https://img.shields.io/github/license/simplatra/simplatra.svg)](https://github.com/simplatra/simplatra/blob/master/LICENSE)
 [![Gem](https://img.shields.io/gem/v/simplatra.svg)](https://rubygems.org/gems/simplatra)
 [![Documentation](https://img.shields.io/badge/docs-gitbook-blue.svg)](https://simplatra.gitbook.io/simplatra)
+[![Build Status](https://travis-ci.org/simplatra/simplatra.svg?branch=master)](https://travis-ci.org/simplatra/simplatra)
 
 # Simplatra
 
