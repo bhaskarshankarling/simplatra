@@ -8,22 +8,22 @@ class <%= config[:class_name] %> < Simplatra::Controller(route: '<%= config[:rou
     end
 
     # GET /id - Read
-    get '/:id' do
-        id = params[:id]
+    get '/:id' do |id|
+
     end
 
     # PUT /id - Edit
-    put '/:id' do
-        id = params[:id]
+    put '/:id' do |id|
+
     end
 
-    # POST /id - Add
-    post '/:id' do
-        id = params[:id]
+    # POST / - Add
+    post '/' do
+
     end
 
     # DELETE /id - Destroy
-    delete '/:id' do
-        id = params[:id]
+    delete '/:id' do |id|
+
     end
 end
