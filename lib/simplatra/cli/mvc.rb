@@ -4,22 +4,22 @@ require 'thor'
 
 module Simplatra
     class MVC < Thor
-        method_options :"no-spec" => false
-        map %w[--no-spec] => :"no-spec"
+        option :spec, type: :boolean, default: true, desc: "Include a model spec file"
         desc "model [NAME]", "Generates a model"
         def model(name)
             directory = File.expand_path ?.
             if File.exist? File.join(directory, '.simplatra')
                 generator = Simplatra::Generators::MVC.new
                 generator.destination_root = directory
-                generator.model(name: name, spec: !options[:"no-spec"])
+                generator.model(name: name, spec: options[:spec])
             else
                 Simplatra::Error.wrong_directory
             end
         end
 
-        method_options :"no-helper" => false, :"no-spec" => false
-        map %w[--no-helper] => :"no-helper", %w[--no-spec] => :"no-spec"
+        option :helper, type: :boolean, default: true, desc: "Include a controller helper file"
+        option :spec, type: :boolean, default: true, desc: "Include a controller spec file"
+        option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
         desc "controller [NAME]", "Generates a controller"
         def controller(name)
             directory = File.expand_path ?.
@@ -28,8 +28,9 @@ module Simplatra
                 generator.destination_root = directory
                 generator.controller(
                     name: name,
-                    helper: !options[:"no-helper"],
-                    spec: !options[:"no-spec"]
+                    helper: options[:helper],
+                    spec: options[:spec],
+                    rest: options[:rest]
                 )
             else
                 Simplatra::Error.wrong_directory
@@ -48,20 +49,12 @@ module Simplatra
             end
         end
 
-        method_options(
-            :"no-model" => false,
-            :"no-model-spec" => false,
-            :"no-controller" => false,
-            :"no-controller-spec" => false,
-            :"no-helper" => false
-        )
-        map(
-            %w[--no-model] => :"no-model",
-            %w[--no-model-spec] => :"no-model-spec",
-            %w[--no-controller] => :"no-controller",
-            %w[--no-controller-spec] => :"no-controller-spec",
-            %w[--no-helper] => :"no-helper"
-        )
+        option :helper, type: :boolean, default: true, desc: "Include a helper"
+        option :model, type: :boolean, default: true, desc: "Include a model"
+        option :model_spec, type: :boolean, default: true, desc: "Include a model spec"
+        option :controller, type: :boolean, default: true, desc: "Include a controller"
+        option :controller_spec, type: :boolean, default: true, desc: "Include a controller spec"
+        option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
         desc "scaffold [NAME]", "Generates a scaffold"
         def scaffold(name)
             directory = File.expand_path ?.
@@ -70,11 +63,12 @@ module Simplatra
                 generator.destination_root = directory
                 generator.scaffold(
                     name: name,
-                    helper: !options[:"no-helper"],
-                    model: !options[:"no-model"],
-                    model_spec: !options[:"no-model-spec"],
-                    controller: !options[:"no-controller"],
-                    controller_spec: !options[:"no-controller-spec"]
+                    helper: options[:helper],
+                    model: options[:model],
+                    model_spec: options[:model_spec],
+                    controller: options[:controller],
+                    controller_spec: options[:controller_spec],
+                    rest: options[:rest]
                 )
             else
                 Simplatra::Error.wrong_directory

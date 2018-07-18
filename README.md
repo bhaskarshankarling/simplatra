@@ -1,12 +1,12 @@
-[![Ruby Version](https://img.shields.io/badge/ruby-~%3E%202.5-red.svg)]()
-[![License](https://img.shields.io/github/license/simplatra/simplatra.svg)](https://github.com/simplatra/simplatra/blob/master/LICENSE)
+[![Ruby Version](https://img.shields.io/badge/ruby-~%3E%202.5-red.svg)](https://github.com/simplatra/simplatra/blob/456ec0ab9660ea0855b985c41db648fa724f21a5/simplatra.gemspec#L23)
 [![Gem](https://img.shields.io/gem/v/simplatra.svg)](https://rubygems.org/gems/simplatra)
-[![Documentation](https://img.shields.io/badge/docs-gitbook-blue.svg)](https://simplatra.gitbook.io/simplatra)
 [![Build Status](https://travis-ci.org/simplatra/simplatra.svg?branch=master)](https://travis-ci.org/simplatra/simplatra)
+[![License](https://img.shields.io/github/license/simplatra/simplatra.svg)](https://github.com/simplatra/simplatra/blob/master/LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-gitbook-blue.svg)](https://simplatra.gitbook.io/simplatra)
 
 # Simplatra
 
-A simple MVC Sinatra template for creating dynamic web applications. Bundled with asset pipeline/preprocessing, view helpers, easy management of static data and options for blog-aware development.
+A simple MVC Sinatra template and CLI for creating dynamic web applications.
 
 ## Installation
 

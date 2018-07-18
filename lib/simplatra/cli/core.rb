@@ -39,7 +39,6 @@ module Simplatra
       end
     end
 
-    method_option :spec , :aliases => 'test'
     desc "spec", "Run all application specs"
     def spec
       directory = File.expand_path ?.

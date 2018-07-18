@@ -23,7 +23,7 @@ module Simplatra
                 template("mvc/model/spec.tt", spec_path, config) if spec
             end
 
-            def controller(helper: true, spec: true, name:)
+            def controller(helper: true, spec: true, rest: false, name:)
                 name = name.to_s
                 file_name = name.downcase.include?('controller') ? "#{name.underscore}.rb" : "#{name.singularize.underscore}_controller.rb"
                 file_path = "app/controllers/#{file_name}"
@@ -32,11 +32,14 @@ module Simplatra
                 spec_path = "spec/controllers/#{spec_name}"
 
                 tokens = file_name.split(?_)
-                route = "/#{tokens.first(tokens.size-1)*?-}"
+                route_name = tokens.first(tokens.size-1)*?-
+                route = "/#{rest ? route_name.pluralize : route_name}"
+
+                controller_template = "mvc/controller/#{rest ? 'rest_' : ''}controller.tt"
 
                 config = {route: route, class_name: class_name}
                 helper(name: name) if helper
-                template("mvc/controller/controller.tt", file_path, config)
+                template(controller_template, file_path, config)
                 template("mvc/controller/spec.tt", spec_path, config) if spec
             end
 
@@ -50,13 +53,13 @@ module Simplatra
                 template("mvc/helper/helper.tt", file_path, config)
             end
 
-            def scaffold(model: true, model_spec: true, controller: true, controller_spec: true, helper: true, name:)
+            def scaffold(model: true, model_spec: true, controller: true, controller_spec: true, helper: true, rest: false, name:)
                 model(spec: model_spec, name: name) if model
                 if helper
                     helper(name: name)
-                    controller(helper: false, spec: controller_spec, name: name) if controller
+                    controller(helper: false, spec: controller_spec, rest: rest, name: name) if controller
                 elsif controller
-                    controller(helper: helper, spec: controller_spec, name: name)
+                    controller(helper: helper, spec: controller_spec, rest: rest, name: name)
                 end
             end
 
