@@ -8,10 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Edwin Onuonga"]
   spec.email         = ["edwinonuonga@gmail.com"]
 
-  spec.summary       = %q{Lightweight and ready-to-use web-application templating for Ruby's Sinatra DSL.}
-  spec.description   = %q{A simple MVC Sinatra template for creating dynamic web applications. Bundled with asset pipeline/preprocessing, view helpers, easy management of static data and options for blog-aware development.}
+  spec.summary       = %q{A simple MVC Sinatra template and CLI for creating dynamic web applications.}
   spec.homepage      = "https://simplatra.gitbook.io/simplatra/"
-  spec.license = "MIT"
+  spec.license       = "MIT"
 
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
@@ -30,4 +29,9 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "activesupport", "~> 5.2"
   spec.add_runtime_dependency "front_matter_parser", "0.2.0"
   spec.add_runtime_dependency "thor", "~> 0.20"
+
+  spec.metadata = {
+    "documentation_uri" => "https://simplatra.gitbook.io/simplatra/",
+    "source_code_uri"   => "https://github.com/simplatra/simplatra"
+  }
 end
