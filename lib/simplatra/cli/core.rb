@@ -1,14 +1,17 @@
 require_relative 'error'
+require_relative 'blog'
 require_relative '../version'
 require 'thor'
 
 module Simplatra
   class CLI < Thor
     include Thor::Actions
+    method_option :blog, type: :boolean, default: false, aliases: '-b'
     desc "init [NAME]", "Sets up the application"
     def init(name)
       current_directory = File.expand_path ?.
-      if Dir.exist? File.join(current_directory, name)
+      root = File.join(current_directory, name)
+      if Dir.exist? root
         puts "\e[1;91mERROR\e[0m: Directory \e[1m#{name}\e[0m already exists."
         return
       end
@@ -16,8 +19,12 @@ module Simplatra
         puts "\e[1;91mERROR\e[0m: Directory \e[1mframe\e[0m already exists."
         return
       else
-        Simplatra::CLI.source_root(File.dirname(File.dirname(__FILE__)))
-        directory 'frame', File.join(current_directory, name)
+        Simplatra::CLI.source_root(File.dirname(__dir__))
+        directory 'frame', root
+        Dir.chdir(root) {
+          puts "#{' '*6}\e[1;90mchdir\e[0m  #{name}"
+          Simplatra::CLI.start(%w[blog setup])
+        } if options[:blog]
       end
     end
 
