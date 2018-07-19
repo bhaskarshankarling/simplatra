@@ -20,7 +20,7 @@ module BlogHelper
         Array.date_sorter(order, obj)
       end
       def sort_by_date(order: :descending)
-        obj = self.map{|x|x[:datetime] = DateTime.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); p x[:datetime]; x}
+        obj = self.map{|x|x[:datetime] = DateTime.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
         Array.date_sorter(order, obj)
       end
     end
