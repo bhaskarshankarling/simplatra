@@ -37,19 +37,21 @@ module Simplatra
             end
         end
 
+        option :spec, type: :boolean, default: true, desc: "Include a helper spec file"
         desc "helper [NAME]", "Generates a helper"
         def helper(name)
             directory = File.expand_path ?.
             if File.exist? File.join(directory, '.simplatra')
                 generator = Simplatra::Generators::MVC.new
                 generator.destination_root = directory
-                generator.helper(name: name)
+                generator.helper(spec: options[:spec], name: name)
             else
                 Simplatra::Error.wrong_directory
             end
         end
 
         option :helper, type: :boolean, default: true, desc: "Include a helper"
+        option :helper_spec, type: :boolean, default: true, desc: "Include a helper spec"
         option :model, type: :boolean, default: true, desc: "Include a model"
         option :model_spec, type: :boolean, default: true, desc: "Include a model spec"
         option :controller, type: :boolean, default: true, desc: "Include a controller"
@@ -64,6 +66,7 @@ module Simplatra
                 generator.scaffold(
                     name: name,
                     helper: options[:helper],
+                    helper_spec: options[:helper_spec],
                     model: options[:model],
                     model_spec: options[:model_spec],
                     controller: options[:controller],
