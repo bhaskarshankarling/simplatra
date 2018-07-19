@@ -6,8 +6,7 @@ module BlogHelper
 
   module Array::DateSort
     refine Array.singleton_class do
-      private
-      def sort(order, obj)
+      def date_sorter(order, obj)
         if order == :ascending
           obj.sort!{|x1, x2| x1[:datetime] <=> x2[:datetime]}
         else
@@ -18,11 +17,11 @@ module BlogHelper
     refine Array do
       def sort_by_date!(order: :descending)
         obj = self.map!{|x|x[:datetime] = Date.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
-        Array.sort(order, obj)
+        Array.date_sorter(order, obj)
       end
       def sort_by_date(order: :descending)
         obj = self.map{|x|x[:datetime] = Date.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
-        Array.sort(order, obj)
+        Array.date_sorter(order, obj)
       end
     end
   end
