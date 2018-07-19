@@ -15,9 +15,9 @@ gem 'sinatra-activerecord', '~> 2.0', require: ['sinatra/activerecord','sinatra/
 
 # Test environment
 group :test, :production do
-    gem 'rack-test', '~> 1.0', require: 'rack/test'
-    gem 'rspec', '>= 3.7', '< 4'
-    gem 'shoulda-matchers', '~> 3.1'
+  gem 'rack-test', '~> 1.0', require: 'rack/test'
+  gem 'rspec', '>= 3.7', '< 4'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 # Logging library
@@ -34,6 +34,6 @@ gem 'rdiscount', '~> 2.2'
 
 # Hanami HTML/asset helpers
 group :hanami do
-    gem 'hanami-helpers', '~> 1.2', require: 'hanami/helpers'
-    gem 'hanami-assets', '~> 1.2', require: ['hanami/assets','hanami/assets/helpers']
+  gem 'hanami-helpers', '~> 1.2', require: 'hanami/helpers'
+  gem 'hanami-assets', '~> 1.2', require: ['hanami/assets','hanami/assets/helpers']
 end

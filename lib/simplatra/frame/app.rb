@@ -7,38 +7,38 @@ Dir["#{Simplatra::ROOT}/config/initializers/*.rb"].each{|file|require file}
 Dir["#{Simplatra::ROOT}/app/{helpers,models,controllers}/*.rb"].each{|file|require file}
 
 class ApplicationController < Sinatra::Base
-    # Set server
-    set :server, %w[thin webrick]
+  # Set server
+  set :server, %w[thin webrick]
 
-    # Set core application file
-    set :app_file, __FILE__
+  # Set core application file
+  set :app_file, __FILE__
 
-    # Set application root directory
-    set :root, Simplatra::ROOT
+  # Set application root directory
+  set :root, Simplatra::ROOT
 
-    # Set views directory
-    set :views, "#{Simplatra::ROOT}/app/views"
+  # Set views directory
+  set :views, "#{Simplatra::ROOT}/app/views"
 
-    # Set default ERB template
-    set :erb, layout: :'layouts/main'
+  # Set default ERB template
+  set :erb, layout: :'layouts/main'
 
-    # Set logger variables
-    %i[test production development].each do |env|
-        configure env do
-            set :logger, Lumberjack::Logger.new("#{Simplatra::ROOT}/log/#{env}.log")
-        end
+  # Set logger variables
+  %i[test production development].each do |env|
+    configure env do
+      set :logger, Lumberjack::Logger.new("#{Simplatra::ROOT}/log/#{env}.log")
     end
+  end
 
-    # Prepare asset pipeline
-    set :environment, Sprockets::Environment.new
-    environment.append_path "#{Simplatra::ROOT}/app/assets/stylesheets"
-    environment.append_path "#{Simplatra::ROOT}/app/assets/scripts"
-    environment.append_path "#{Simplatra::ROOT}/app/assets/images"
-    environment.append_path "#{Simplatra::ROOT}/app/assets/fonts"
-    environment.css_compressor = :scss
-    environment.js_compressor = :uglify
-    get '/assets/*' do
-        env["PATH_INFO"].sub!('/assets','')
-        settings.environment.call(env)
-    end
+  # Prepare asset pipeline
+  set :environment, Sprockets::Environment.new
+  environment.append_path "#{Simplatra::ROOT}/app/assets/stylesheets"
+  environment.append_path "#{Simplatra::ROOT}/app/assets/scripts"
+  environment.append_path "#{Simplatra::ROOT}/app/assets/images"
+  environment.append_path "#{Simplatra::ROOT}/app/assets/fonts"
+  environment.css_compressor = :scss
+  environment.js_compressor = :uglify
+  get '/assets/*' do
+    env["PATH_INFO"].sub!('/assets','')
+    settings.environment.call(env)
+  end
 end

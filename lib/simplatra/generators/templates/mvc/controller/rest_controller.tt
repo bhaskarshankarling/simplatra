@@ -1,29 +1,29 @@
 require_relative 'application_controller'
 class <%= config[:class_name] %> < Simplatra::Controller(route: '<%= config[:route] %>')
-    helpers <%= config[:class_name].gsub 'Controller', 'Helper' %> if defined? <%= config[:class_name].gsub 'Controller', 'Helper' %>
+  helpers <%= config[:class_name].gsub 'Controller', 'Helper' %> if defined? <%= config[:class_name].gsub 'Controller', 'Helper' %>
 
-    # GET / - Browse
-    get '/' do
+  # GET / - Browse
+  get '/' do
 
-    end
+  end
 
-    # GET /id - Read
-    get '/:id' do
-        id = params[:id]
-    end
+  # GET /id - Read
+  get '/:id' do |id|
 
-    # PUT /id - Edit
-    put '/:id' do
-        id = params[:id]
-    end
+  end
 
-    # POST /id - Add
-    post '/:id' do
-        id = params[:id]
-    end
+  # PUT /id - Edit
+  put '/:id' do |id|
 
-    # DELETE /id - Destroy
-    delete '/:id' do
-        id = params[:id]
-    end
+  end
+
+  # POST / - Add
+  post '/' do
+
+  end
+
+  # DELETE /id - Destroy
+  delete '/:id' do |id|
+
+  end
 end

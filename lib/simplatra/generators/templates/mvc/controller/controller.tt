@@ -1,4 +1,4 @@
 require_relative 'application_controller'
 class <%= config[:class_name] %> < Simplatra::Controller(route: '<%= config[:route] %>')
-    helpers <%= config[:class_name].gsub 'Controller', 'Helper' %> if defined? <%= config[:class_name].gsub 'Controller', 'Helper' %>
+  helpers <%= config[:class_name].gsub 'Controller', 'Helper' %> if defined? <%= config[:class_name].gsub 'Controller', 'Helper' %>
 end

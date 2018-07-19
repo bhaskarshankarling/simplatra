@@ -1,6 +1,6 @@
 require_relative '../spec_helper'
-describe ApplicationController do
-  def app() ApplicationController end
+describe <%= config[:module_name] %> do
+  include <%= config[:module_name] %>
 
   it "should expect true to be false" do
     expect(true).to be false

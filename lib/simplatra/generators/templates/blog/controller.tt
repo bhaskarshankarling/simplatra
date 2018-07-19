@@ -1,32 +1,32 @@
 class BlogController < Simplatra::Controller(route: '<%= config[:route] %>')
-    helpers BlogHelper
-    using Array::DateSort
+  helpers BlogHelper
+  using Array::DateSort
 
-    # Display all blog articles at this route
-    get '/' do
-        @articles = Blog.all.sort_by_date(order: :descending)
-        erb :'blog/articles', layout: :'layouts/blog/articles'
+  # Display all blog articles at this route
+  get '/' do
+    @articles = Blog.all.sort_by_date(order: :descending)
+    erb :'blog/articles', layout: :'layouts/blog/articles'
+  end
+
+  # Display a single blog article at this route
+  Blog::ARTICLES.each do |md|
+    article = Blog::Article.new(md)
+    get article.route do
+      @front_matter = article.front_matter
+      erb :'blog/article', locals: {content: markdown(article.content)}, layout: :'layouts/blog/article'
     end
+  end
 
-    # Display a single blog article at this route
-    Blog::ARTICLES.each do |md|
-        article = Blog::Article.new(md)
-        get article.route do
-            @front_matter = article.front_matter
-            erb :'blog/article', locals: {content: markdown(article.content)}, layout: :'layouts/blog/article'
-        end
-    end
+  # Search for blog articles by tag at this route
+  query = Proc.new do
+    @query = params[:query]
+    redirect to('/') unless @query.match /^[a-zA-Z]*[a-zA-Z0-9\\-_.]*[a-zA-Z0-9]$/
+    @articles = Blog.search(@query).sort_by_date(order: :descending)
+    erb :'blog/search', layout: :'layouts/blog/articles'
+  end
+  get "/search/:query", &query
+  post "/search/:query", &query
 
-    # Search for blog articles by tag at this route
-    query = Proc.new do
-        @query = params[:query]
-        redirect to('/') unless @query.match /^[a-zA-Z]*[a-zA-Z0-9\\-_.]*[a-zA-Z0-9]$/
-        @articles = Blog.search(@query).sort_by_date(order: :descending)
-        erb :'blog/search', layout: :'layouts/blog/articles'
-    end
-    get "/search/:query", &query
-    post "/search/:query", &query
-
-    # Redirect all other blog routes
-    get(%r{/.*}) {redirect to('/')}
+  # Redirect all other blog routes
+  get(%r{/.*}) {redirect to('/')}
 end
