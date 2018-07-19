@@ -1,4 +1,5 @@
 require_relative 'error'
+require_relative '../version'
 require 'thor'
 
 module Simplatra
@@ -47,6 +48,12 @@ module Simplatra
       else
         Simplatra::Error.wrong_directory
       end
+    end
+
+    map %w[--version -v] => :__print_version
+    desc "--version, -v", "Display installed Simplatra version"
+    def __print_version
+      puts Simplatra::VERSION
     end
   end
 end
