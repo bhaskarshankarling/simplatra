@@ -1,38 +1,39 @@
 module BlogHelper
-    require 'front_matter_parser'
-    require 'rdiscount'
+  require 'front_matter_parser'
+  require 'rdiscount'
 
-    module Array::DateSort
-        refine Array do
-            def sort_by_date!(order: :descending)
-                obj = self.map!{|x|x[:datetime] = Date.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
-                sort(order, obj)
-            end
-            def sort_by_date(order: :descending)
-                obj = self.map{|x|x[:datetime] = Date.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
-                sort(order, obj)
-            end
-            private; def sort(order, obj)
-                order == :ascending ? obj.sort!{|x1, x2| x1[:datetime] <=> x2[:datetime]} : obj.sort!{|x1, x2| x2[:datetime] <=> x1[:datetime]}
-            end
-        end
+  module Array::DateSort
+    refine Array do
+      def sort_by_date!(order: :descending)
+        obj = self.map!{|x|x[:datetime] = Date.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
+        sort(order, obj)
+      end
+      def sort_by_date(order: :descending)
+        obj = self.map{|x|x[:datetime] = Date.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
+        sort(order, obj)
+      end
+      private
+      def sort(order, obj)
+        order == :ascending ? obj.sort!{|x1, x2| x1[:datetime] <=> x2[:datetime]} : obj.sort!{|x1, x2| x2[:datetime] <=> x1[:datetime]}
+      end
+    end
+  end
+
+  class Blog
+    ARTICLES = Dir.glob("#{Simplatra::ROOT}/app/views/blog/markdown/**/*.md")
+
+    class << self
+      def all() ARTICLES.map{|md|FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys} end
+      def search(query) all.select{|post|post[:tags].any?{|tag|tag.include?(query)}} end
     end
 
-    class Blog
-        ARTICLES = Dir.glob("#{Simplatra::ROOT}/app/views/blog/markdown/**/*.md")
-
-        class << self
-            def all() ARTICLES.map{|md|FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys} end
-            def search(query) all.select{|post|post[:tags].any?{|tag|tag.include?(query)}} end
-        end
-
-        class Article
-            def initialize(md) @parsed = FrontMatterParser::Parser.parse_file(md) end
-            def front_matter() @parsed.front_matter.symbolize_keys end
-            def content() @parsed.content end
-            def route() "/#{front_matter[:time].split(' ').first.gsub(?-,?/)}/#{front_matter[:urltitle]}" end
-        end
+    class Article
+      def initialize(md) @parsed = FrontMatterParser::Parser.parse_file(md) end
+      def front_matter() @parsed.front_matter.symbolize_keys end
+      def content() @parsed.content end
+      def route() "/#{front_matter[:time].split(' ').first.gsub(?-,?/)}/#{front_matter[:urltitle]}" end
     end
+  end
 
-    # Define your other helpers below (within the module)
+  # Define your other helpers below (within the module)
 end

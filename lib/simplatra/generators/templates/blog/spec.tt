@@ -1,38 +1,38 @@
 require_relative '../spec_helper'
 require 'front_matter_parser'
 describe BlogController do
-    def app() BlogController end
+  def app() BlogController end
 
-    ARTICLES = Dir.glob("#{Simplatra::ROOT}/app/views/blog/markdown/**/*.md").map do |md|
-        FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys
+  ARTICLES = Dir.glob("#{Simplatra::ROOT}/app/views/blog/markdown/**/*.md").map do |md|
+    FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys
+  end
+
+  describe 'blog page' do
+    it "should display all posts" do
+      expect(true).to eq(false)
     end
+  end
 
-    describe 'blog page' do
-        it "should display all posts" do
-            expect(true).to eq(false)
+  ARTICLES.each do |post|
+    describe "Post: #{post[:title]}" do
+      it "should have a timestamp" do
+        get "<%= config[:route] %>/#{post[:urltitle]}"
+        expect(true).to eq(false)
+      end
+      it "should have a title" do
+        get "<%= config[:route] %>/#{post[:urltitle]}"
+        expect(true).to eq(false)
+      end
+      it "should have a description" do
+        get "<%= config[:route] %>/#{post[:urltitle]}"
+        expect(true).to eq(false)
+      end
+      it "should have tags" do
+        get "<%= config[:route] %>/#{post[:urltitle]}"
+        post[:tags].each do |tag|
+          expect(true).to eq(false)
         end
+      end
     end
-
-    ARTICLES.each do |post|
-        describe "Post: #{post[:title]}" do
-            it "should have a timestamp" do
-                get "<%= config[:route] %>/#{post[:urltitle]}"
-                expect(true).to eq(false)
-            end
-            it "should have a title" do
-                get "<%= config[:route] %>/#{post[:urltitle]}"
-                expect(true).to eq(false)
-            end
-            it "should have a description" do
-                get "<%= config[:route] %>/#{post[:urltitle]}"
-                expect(true).to eq(false)
-            end
-            it "should have tags" do
-                get "<%= config[:route] %>/#{post[:urltitle]}"
-                post[:tags].each do |tag|
-                    expect(true).to eq(false)
-                end
-            end
-        end
-    end
+  end
 end
