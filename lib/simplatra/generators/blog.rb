@@ -53,14 +53,14 @@ module Simplatra
 
       def helper
         template("blog/helper.tt", "app/helpers/blog_helper.rb")
+        template("blog/helper_spec.tt", "spec/helpers/blog_helper_spec.rb")
       end
 
       def controller(route:)
         route = route[0] == ?/ ? route : "/#{route}"
-
         config = {route: route}
         template("blog/controller.tt", "app/controllers/blog_controller.rb", config)
-        template("blog/spec.tt", "spec/controllers/blog_controller_spec.rb", config)
+        template("blog/controller_spec.tt", "spec/controllers/blog_controller_spec.rb", config)
       end
 
       def list
