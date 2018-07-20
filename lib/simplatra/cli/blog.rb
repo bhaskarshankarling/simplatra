@@ -16,14 +16,15 @@ module Simplatra
       end
     end
 
-    desc "setup [ROUTE]", "Sets up the blogging environment (controller, spec and helper)"
-    def setup(route = '/blog')
+    method_option :route, type: :string, aliases: '-r', default: 'blog'
+    desc "setup", "Sets up the blogging environment (controller, spec and helper)"
+    def setup
       directory = File.expand_path ?.
       if File.exist? File.join(directory, '.simplatra')
         generator = Simplatra::Generators::Blog.new
         generator.destination_root = directory
         generator.helper
-        generator.controller(route: route)
+        generator.controller(route: options[:route])
         generator.views
       else
         Simplatra::Error.wrong_directory

@@ -6,7 +6,7 @@ require 'thor'
 module Simplatra
   class CLI < Thor
     include Thor::Actions
-    method_option :blog, type: :boolean, default: false, aliases: '-b'
+    method_option :blog, type: :hash, lazy_default: {}, aliases: '-b'
     desc "init [NAME]", "Sets up the application"
     def init(name)
       current_directory = File.expand_path ?.
@@ -23,8 +23,13 @@ module Simplatra
         directory 'frame', root
         Dir.chdir(root) {
           puts "#{' '*6}\e[1;90mchdir\e[0m  #{name}"
-          Simplatra::CLI.start(%w[blog setup])
-        } if options[:blog]
+          args = %w[blog setup]
+          unless options[:blog].empty?
+            route = options[:blog]['route']
+            args.concat(route ? ['-r', route] : [])
+          end
+          Simplatra::CLI.start(args)
+        } unless options[:blog].nil?
       end
     end
 
