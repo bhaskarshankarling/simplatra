@@ -1,4 +1,4 @@
-### Ruby ###
+## Ruby
 *.gem
 *.rbc
 /.config
@@ -12,7 +12,7 @@
 /test/version_tmp/
 /tmp/
 
-# Used by dotenv library to load environment variables.
+## Used by dotenv library to load environment variables
 .env
 
 ## Documentation cache and generated files:
