@@ -50,27 +50,33 @@ module Simplatra
       end
     end
 
-    option :helper, type: :boolean, default: true, desc: "Include a helper"
-    option :helper_spec, type: :boolean, default: true, desc: "Include a helper spec"
-    option :model, type: :boolean, default: true, desc: "Include a model"
-    option :model_spec, type: :boolean, default: true, desc: "Include a model spec"
-    option :controller, type: :boolean, default: true, desc: "Include a controller"
-    option :controller_spec, type: :boolean, default: true, desc: "Include a controller spec"
+    option :no, aliases: '-n', type: :array, default: [], desc: "Omit specified scaffold files"
     option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
     desc "scaffold [NAME]", "Generates a scaffold"
     def scaffold(name)
       directory = File.expand_path ?.
       if File.exist? File.join(directory, '.simplatra')
+        allowed = %i[
+          helper h
+          helper_spec hs
+          model m
+          model_spec ms
+          controller c
+          controller_spec cs
+        ]
+        opts = options[:no].map{|opt|opt.gsub(?-,?_).to_sym}
+        legal = opts & allowed
+
         generator = Simplatra::Generators::MVC.new
         generator.destination_root = directory
         generator.scaffold(
           name: name,
-          helper: options[:helper],
-          helper_spec: options[:helper_spec],
-          model: options[:model],
-          model_spec: options[:model_spec],
-          controller: options[:controller],
-          controller_spec: options[:controller_spec],
+          helper: !(legal & %i[helper h]).present?,
+          helper_spec: !(legal & %i[helper_spec hs]).present?,
+          model: !(legal & %i[model m]).present?,
+          model_spec: !(legal & %i[model_spec ms]).present?,
+          controller: !(legal & %i[controller c]).present?,
+          controller_spec: !(legal & %i[controller_spec cs]).present?,
           rest: options[:rest]
         )
       else
