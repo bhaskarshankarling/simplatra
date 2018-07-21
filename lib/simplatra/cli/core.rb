@@ -1,6 +1,6 @@
-require_relative 'error'
-require_relative 'blog'
-require_relative '../version'
+require 'simplatra/cli/error'
+require 'simplatra/cli/blog'
+require 'simplatra/version'
 require 'thor'
 
 module Simplatra

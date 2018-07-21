@@ -24,7 +24,7 @@ describe Simplatra::CLI do
             model: File.join(@root, "app/models/#{@name}.rb"),
             spec: File.join(@root, "spec/models/#{@name}_spec.rb")
           }
-          @args = ['mvc','model',@name]
+          @args = ['generate','model',@name]
         end
 
         it "should generate a model" do
@@ -51,7 +51,7 @@ describe Simplatra::CLI do
             model: File.join(@root, "app/models/#{@name}.rb"),
             spec: File.join(@root, "spec/models/#{@name}_spec.rb")
           }
-          @args = ['mvc','model',@name,'--no-spec']
+          @args = ['generate','model',@name,'--no-spec']
         end
 
         it "should generate a model" do

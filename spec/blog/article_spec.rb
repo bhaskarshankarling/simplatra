@@ -11,7 +11,7 @@ describe Simplatra::CLI do
           silence { Simplatra::CLI.start(args) }
           Dir.chdir('tmp') do
             silence { Simplatra::CLI.start(%w[blog setup]) }
-            silence { Simplatra::CLI.start(['blog','article',@name]) }
+            silence { Simplatra::CLI.start(['blog','article','generate',@name]) }
           end
         end
         @root = File.join(File.dirname(__dir__),'tmp')

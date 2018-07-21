@@ -12,9 +12,9 @@ describe Simplatra::CLI do
           Dir.chdir('tmp') do
             silence { Simplatra::CLI.start(%w[blog setup]) }
             @names.each do |name|
-              silence { Simplatra::CLI.start(['blog','article',name]) }
+              silence { Simplatra::CLI.start(['blog','article','generate',name]) }
             end
-            @stdout = silence { Simplatra::CLI.start(%w[blog list]) }
+            @stdout = silence { Simplatra::CLI.start(%w[blog article list]) }
           end
         end
         @root = File.join(File.dirname(__dir__),'tmp')

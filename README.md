@@ -32,4 +32,4 @@ $ bundle install
 
 And you're ready to go!
 
-### [View the GitBook for full documentation of the template](https://simplatra.gitbook.io/simplatra/)
+### [View the GitBook for full documentation of the template and CLI](https://simplatra.gitbook.io/simplatra/)

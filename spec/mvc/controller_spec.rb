@@ -25,7 +25,7 @@ describe Simplatra::CLI do
             helper: File.join(@root, "app/helpers/#{@name}_helper.rb"),
             spec: File.join(@root, "spec/controllers/#{@name}_controller_spec.rb")
           }
-          @args = ['mvc','controller',@name]
+          @args = ['generate','controller',@name]
         end
 
         it "should generate a controller" do
@@ -61,7 +61,7 @@ describe Simplatra::CLI do
             helper: File.join(@root, "app/helpers/#{@name}_helper.rb"),
             spec: File.join(@root, "spec/controllers/#{@name}_controller_spec.rb")
           }
-          @args = ['mvc','controller',@name,'--no-spec']
+          @args = ['generate','controller',@name,'--no-spec']
         end
 
         it "should generate a controller" do
@@ -97,7 +97,7 @@ describe Simplatra::CLI do
             helper: File.join(@root, "app/helpers/#{@name}_helper.rb"),
             spec: File.join(@root, "spec/controllers/#{@name}_controller_spec.rb")
           }
-          @args = ['mvc','controller',@name,'--no-helper']
+          @args = ['generate','controller',@name,'--no-helper']
         end
 
         it "should generate a controller" do
@@ -133,7 +133,7 @@ describe Simplatra::CLI do
             helper: File.join(@root, "app/helpers/#{@name}_helper.rb"),
             spec: File.join(@root, "spec/controllers/#{@name}_controller_spec.rb")
           }
-          @args = ['mvc','controller',@name,'--no-helper','--no-spec']
+          @args = ['generate','controller',@name,'--no-helper','--no-spec']
         end
 
         it "should generate a controller" do

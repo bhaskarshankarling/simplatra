@@ -22,7 +22,7 @@ describe Simplatra::CLI do
         @paths = {
           helper: File.join(@root, "app/helpers/#{@name}_helper.rb"),
         }
-        @args = ['mvc','helper',@name]
+        @args = ['generate','helper',@name]
       end
 
       it "should generate a helper" do

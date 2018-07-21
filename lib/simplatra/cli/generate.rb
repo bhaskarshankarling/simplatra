@@ -1,9 +1,9 @@
-require_relative '../generators/mvc'
-require_relative 'error'
+require 'simplatra/generators/mvc'
+require 'simplatra/cli/error'
 require 'thor'
 
 module Simplatra
-  class MVC < Thor
+  class Generate < Thor
     option :spec, type: :boolean, default: true, desc: "Include a model spec file"
     desc "model [NAME]", "Generates a model"
     def model(name)
@@ -85,11 +85,11 @@ module Simplatra
     end
 
     def self.banner(task, namespace = false, subcommand = true)
-      task.formatted_usage(self, true, subcommand).split(':').join(' ')
+      basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
     end
   end
 
   class CLI < Thor
-    register(MVC, 'mvc', 'mvc [COMMAND]', 'Generating models, controllers and helpers')
+    register(Generate, 'generate', 'generate [COMMAND]', 'Generate models, controllers and helpers')
   end
 end
