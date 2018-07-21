@@ -26,7 +26,7 @@
     box-shadow: $box-shadows;
 }
 
-@mixin filter($filter) {
+@mixin filter($filter...) {
     -webkit-filter: $filter;
     -moz-filter: $filter;
     -o-filter: $filter;
