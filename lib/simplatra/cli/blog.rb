@@ -9,7 +9,7 @@ module Simplatra
     include Thor::Actions
 
     method_option :route, type: :string, aliases: '-r', default: 'blog'
-    desc "setup", "Sets up the blogging environment (controller, spec and helper)"
+    desc "setup", "Sets up the blog-aware environment"
     def setup
       directory = File.expand_path ?.
       if File.exist? File.join(directory, '.simplatra')
