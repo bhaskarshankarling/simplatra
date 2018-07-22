@@ -20,6 +20,10 @@ module Simplatra
       else
         Simplatra::CLI.source_root(File.dirname(__dir__))
         directory 'frame', root
+
+        config = {version: Simplatra::VERSION}
+        template 'generators/templates/Gemfile.tt', File.join(root, 'Gemfile'), config
+
         Dir.chdir(root) {
           puts "#{' '*6}\e[1;90mchdir\e[0m  #{name}"
           args = %w[blog setup]

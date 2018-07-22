@@ -44,6 +44,44 @@ module Simplatra
         end
         articles_hash
       end
+
+      module Array::DateSort
+        refine Array.singleton_class do
+          def date_sorter(order, obj)
+            if order == :ascending
+              obj.sort!{|x1, x2| x1[:datetime] <=> x2[:datetime]}
+            else
+              obj.sort!{|x1, x2| x2[:datetime] <=> x1[:datetime]}
+            end
+          end
+        end
+        refine Array do
+          def sort_by_date!(order: :descending)
+            obj = self.map!{|x|x[:datetime] = DateTime.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
+            Array.date_sorter(order, obj)
+          end
+          def sort_by_date(order: :descending)
+            obj = self.map{|x|x[:datetime] = DateTime.strptime(x[:time], "%Y-%m-%d %H:%M:%S"); x}
+            Array.date_sorter(order, obj)
+          end
+        end
+      end
+
+      class Blog
+        class << self
+          def articles=(val) @@articles = val end
+          def all() @@articles.map{|md|FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys} end
+          def search(query) all.select{|post|post[:tags].any?{|tag|tag.include?(query)}} end
+        end
+
+        class Article
+          def initialize(md) @parsed = FrontMatterParser::Parser.parse_file(md) end
+          def front_matter() @parsed.front_matter.symbolize_keys end
+          def content() @parsed.content end
+          def route() "/#{front_matter[:time].split(' ').first.gsub(?-,?/)}/#{front_matter[:urltitle]}" end
+        end
+      end
+
     end
   end
 end

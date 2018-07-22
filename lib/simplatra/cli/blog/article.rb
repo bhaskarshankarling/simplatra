@@ -10,13 +10,15 @@ module Simplatra
     include Thor::Actions
     include Simplatra::Blog::Helpers
 
+    method_option :descending, type: :boolean, aliases: '-d', default: true
+    method_option :ascending, type: :boolean, aliases: '-a', default: false
     desc "list", "Pretty-print the metadata of all blog articles"
     def list
       directory = File.expand_path ?.
       if File.exist? File.join(directory, '.simplatra')
         generator = Simplatra::Generators::Blog.new
         generator.destination_root = directory
-        generator.list
+        generator.list(order: options[:ascending] ? :ascending : :descending)
       else
         Simplatra::Error.wrong_directory
       end
