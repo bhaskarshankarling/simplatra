@@ -1,3 +1,3 @@
 module Simplatra
-  VERSION = "5.0.0"
+  VERSION = "0.10.0"
 end
