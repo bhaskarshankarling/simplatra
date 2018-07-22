@@ -2,12 +2,15 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'string/builder'
 require 'front_matter_parser'
+require 'simplatra/cli/blog/helpers'
 require 'thor'
 
 module Simplatra
   module Generators
     class Blog < Thor::Group
       using String::Builder
+      include Simplatra::Blog::Helpers
+      using Array::DateSort
       include Thor::Actions
       TEMPLATES = "#{File.dirname(__FILE__)}/templates"
 
@@ -63,13 +66,14 @@ module Simplatra
         template("blog/controller_spec.tt", "spec/controllers/blog_controller_spec.rb", config)
       end
 
-      def list
+      def list(order:)
         chars = {corner: ?+, vertical: ?║, horizontal: ?═}
 
         files = Dir.glob(File.join(self.destination_root,"app/views/blog/markdown/**/*.md"))
         return if files.empty?
 
         metadata = files.map{|md|FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys}
+        metadata.sort_by_date!(order: order)
 
         longest = 0
         metadata.each do |article|

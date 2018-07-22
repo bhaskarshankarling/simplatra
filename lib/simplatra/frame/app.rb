@@ -2,9 +2,9 @@ require 'bundler'
 Bundler.require :default
 require_relative 'config/root'
 
-Dir["#{Simplatra::ROOT}/config/*.rb"].each{|file|require file}
-Dir["#{Simplatra::ROOT}/config/initializers/*.rb"].each{|file|require file}
-Dir["#{Simplatra::ROOT}/app/{helpers,models,controllers}/*.rb"].each{|file|require file}
+Dir[Simplatra.path('config', '*.rb')].each{|file|require file}
+Dir[Simplatra.path('config', 'initializers', '*.rb')].each{|file|require file}
+Dir[Simplatra.path('app', '{helpers,models,controllers}', '*.rb')].each{|file|require file}
 
 class ApplicationController < Sinatra::Base
   # Set server
@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
   set :root, Simplatra::ROOT
 
   # Set views directory
-  set :views, "#{Simplatra::ROOT}/app/views"
+  set :views, Simplatra.path('app', 'views')
 
   # Set default ERB template
   set :erb, layout: :'layouts/main'
@@ -25,16 +25,16 @@ class ApplicationController < Sinatra::Base
   # Set logger variables
   %i[test production development].each do |env|
     configure env do
-      set :logger, Lumberjack::Logger.new("#{Simplatra::ROOT}/log/#{env}.log")
+      set :logger, Lumberjack::Logger.new(Simplatra.path('log', "#{env}.log"))
     end
   end
 
   # Prepare asset pipeline
   set :environment, Sprockets::Environment.new
-  environment.append_path "#{Simplatra::ROOT}/app/assets/stylesheets"
-  environment.append_path "#{Simplatra::ROOT}/app/assets/scripts"
-  environment.append_path "#{Simplatra::ROOT}/app/assets/images"
-  environment.append_path "#{Simplatra::ROOT}/app/assets/fonts"
+  environment.append_path Simplatra.path('app', 'assets', 'stylesheets')
+  environment.append_path Simplatra.path('app', 'assets', 'scripts')
+  environment.append_path Simplatra.path('app', 'assets', 'images')
+  environment.append_path Simplatra.path('app', 'assets', 'fonts')
   environment.css_compressor = :scss
   environment.js_compressor = :uglify
   get '/assets/*' do

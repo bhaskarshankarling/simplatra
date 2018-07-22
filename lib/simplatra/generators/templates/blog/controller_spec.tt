@@ -3,7 +3,7 @@ require 'front_matter_parser'
 describe BlogController do
   def app() BlogController end
 
-  ARTICLES = Dir.glob("#{Simplatra::ROOT}/app/views/blog/markdown/**/*.md").map do |md|
+  ARTICLES = Dir[Simplatra.path('app', 'views', 'blog', 'markdown', '**', '*.md')].map do |md|
     FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys
   end
 
