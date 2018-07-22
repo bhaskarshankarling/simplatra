@@ -1,5 +1,5 @@
 require './app'
-Dir["#{Simplatra::ROOT}/app/controllers/*.rb"].each do |file|
+Dir[Simplatra.path('app', 'controllers', '*.rb')].each do |file|
   controller_name = File.basename(file,'.*').camelize
   next if controller_name == 'ApplicationController'
   controller = controller_name.constantize

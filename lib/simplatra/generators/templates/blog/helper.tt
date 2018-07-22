@@ -2,7 +2,7 @@ require 'rdiscount'
 require 'simplatra/cli/blog/helpers'
 module BlogHelper
   include Simplatra::Blog::Helpers
-  Blog.articles = Dir.glob("#{Simplatra::ROOT}/app/views/blog/markdown/**/*.md")
+  Blog.articles = Dir[Simplatra.path('app', 'views', 'blog', 'markdown', '**', '*.md')]
 
   # Define your other helper methods here...
 end
