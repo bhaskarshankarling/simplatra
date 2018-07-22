@@ -70,6 +70,7 @@ module Simplatra
       class Blog
         class << self
           def articles=(val) @@articles = val end
+          def articles @@articles end
           def all() @@articles.map{|md|FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys} end
           def search(query) all.select{|post|post[:tags].any?{|tag|tag.include?(query)}} end
         end
