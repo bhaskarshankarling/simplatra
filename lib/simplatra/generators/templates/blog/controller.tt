@@ -9,7 +9,7 @@ class BlogController < Simplatra::Controller(route: '<%= config[:route] %>')
   end
 
   # Display a single blog article at this route
-  Blog::ARTICLES.each do |md|
+  Blog.articles.each do |md|
     article = Blog::Article.new(md)
     get article.route do
       @front_matter = article.front_matter
