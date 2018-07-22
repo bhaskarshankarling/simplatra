@@ -78,7 +78,7 @@ module Simplatra
         longest = 0
         metadata.each do |article|
           article.each do |k,v|
-            next if k == :desc
+            next if %i[desc datetime].include? k
             str = "#{k}: #{v}"
             longest = str.length if longest < str.length
           end
@@ -88,6 +88,7 @@ module Simplatra
           s << (chars[:corner]+chars[:horizontal]*(longest+2)+chars[:corner]+"\n")
           metadata.each do |article|
             article.each do |k,v|
+              next if k == :datetime
               str = "#{k}: #{v}"
               if k == :desc
                 value = v.to_s
