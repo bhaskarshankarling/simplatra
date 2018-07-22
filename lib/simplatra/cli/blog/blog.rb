@@ -1,6 +1,6 @@
 require 'simplatra/generators/blog'
 require 'simplatra/cli/error'
-require 'simplatra/cli/blog_article'
+require 'simplatra/cli/blog/article'
 require 'front_matter_parser'
 require 'thor'
 

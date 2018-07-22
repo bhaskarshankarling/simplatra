@@ -2,7 +2,7 @@
 title: "TODO"
 desc: "TODO"
 tags: ["TODO"]
-# Changing `urltitle` or `time` will require changes to the asset and view directory structures, as well as the asset path below.
+# Only change the below fields with `simplatra blog article edit` commands!
 urltitle: "<%= config[:urltitle] %>"
 time: "<%= config[:datetime] %>"
 assetpath: "/assets/blog/<%= config[:date].gsub(?-,?/) %>/<%= config[:urltitle] %>/"

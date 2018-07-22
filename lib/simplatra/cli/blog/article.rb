@@ -1,11 +1,14 @@
 require 'simplatra/generators/blog'
 require 'simplatra/cli/error'
+require 'simplatra/cli/blog/article/edit'
+require 'simplatra/cli/blog/helpers'
 require 'front_matter_parser'
 require 'thor'
 
 module Simplatra
   class Article < Thor
     include Thor::Actions
+    include Simplatra::Blog::Helpers
 
     desc "list", "Pretty-print the metadata of all blog articles"
     def list
@@ -58,12 +61,15 @@ module Simplatra
         end
 
         article_number = ask("\nEnter the number of the article to delete:", limited_to: article_numbers)
-        delete_article = ask("\e[1;93mWARNING\e[0m: Delete article \e[1m#{articles_hash[article_number.to_sym]}\e[0m?", limited_to: %w[y Y Yes YES n N No NO])
+        article = articles_hash[article_number.to_sym]
+        delete_article = ask("\e[1;93mWARNING\e[0m: Delete article \e[1m#{article}\e[0m?", limited_to: %w[y Y Yes YES n N No NO])
         return unless %w[y Y Yes YES].include? delete_article
-        remove_file(File.join(markdown_base,"#{articles_hash[article_number.to_sym]}.md"))
-        Dir.chdir(markdown_base) { `find . -type d -empty -delete` }
-        paths = articles_hash[article_number.to_sym].rpartition ?/
+        remove_file File.join(markdown_base, "#{article}.md")
+        paths = article.rpartition ?/
         Dir.chdir(File.join asset_base, paths.first) { FileUtils.rm_rf paths.last }
+
+        clean_directory(asset_base)
+        clean_directory(markdown_base)
       else
         Simplatra::Error.wrong_directory
       end
@@ -73,5 +79,6 @@ module Simplatra
       "#{basename} blog #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
     end
 
+    register(Edit, 'edit', 'edit [COMMAND]', 'Edit blog articles')
   end
 end

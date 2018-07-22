@@ -3,10 +3,10 @@ module Simplatra
     class << self
       def wrong_directory
         puts "\e[1;91mERROR\e[0m: Couldn't find \e[1m.simplatra\e[0m file in current directory."
-        puts "\e[1mINFO\e[0m:"
-        puts "Try changing the current working directory to your application's root directory."
-        puts "Or try creating a new application with `\e[1msimplatra init your-app-name\e[0m`."
-        puts "Or if you deleted the .simplatra file, simply create it again."
+        puts "\e[1mINFO\e[0m: Try:"
+        puts " - Changing the current working directory to your application's root directory."
+        puts " - Creating a new application with `\e[1msimplatra init your-app-name\e[0m`."
+        puts " - Creating a .simplatra file if you deleted it."
       end
 
       def no_articles

@@ -1,5 +1,4 @@
 require 'simplatra/cli/error'
-require 'simplatra/cli/blog'
 require 'simplatra/version'
 require 'thor'
 
